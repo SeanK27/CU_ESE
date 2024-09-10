@@ -1,0 +1,265 @@
+13:49:25 **** Build of configuration Debug for project SKadkhodayanLab1 ****
+make -j16 all 
+arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Startup/startup_stm32f429zitx.d" -MT"Startup/startup_stm32f429zitx.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Startup/startup_stm32f429zitx.o" "../Startup/startup_stm32f429zitx.s"
+arm-none-eabi-gcc "../Src/ApplicationCode.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F429I_DISC1 -DSTM32 -DSTM32F429ZITx -DSTM32F4 -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/ApplicationCode.d" -MT"Src/ApplicationCode.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/ApplicationCode.o"
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F429I_DISC1 -DSTM32 -DSTM32F429ZITx -DSTM32F4 -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F429I_DISC1 -DSTM32 -DSTM32F429ZITx -DSTM32F4 -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/syscalls.d" -MT"Src/syscalls.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/syscalls.o"
+arm-none-eabi-gcc "../Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F429I_DISC1 -DSTM32 -DSTM32F429ZITx -DSTM32F4 -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/sysmem.d" -MT"Src/sysmem.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/sysmem.o"
+../Src/ApplicationCode.c:17:15: error: unknown type name 'uint32_t'
+   17 | void AppDelay(uint32_t time) {
+      |               ^~~~~~~~
+../Src/ApplicationCode.c:1:1: note: 'uint32_t' is defined in header '<stdint.h>'; did you forget to '#include <stdint.h>'?
+  +++ |+#include <stdint.h>
+    1 | /*
+../Src/ApplicationCode.c: In function 'EnablePeripheralsAndClocks':
+../Src/ApplicationCode.c:33:9: error: unknown type name 'uint32_t'
+   33 |         uint32_t * clkPtr = (uint32_t *) GPIOG_RCC_ENABLE_ADDRESS;
+      |         ^~~~~~~~
+../Src/ApplicationCode.c:33:9: note: 'uint32_t' is defined in header '<stdint.h>'; did you forget to '#include <stdint.h>'?
+../Src/ApplicationCode.c:33:30: error: 'uint32_t' undeclared (first use in this function)
+   33 |         uint32_t * clkPtr = (uint32_t *) GPIOG_RCC_ENABLE_ADDRESS;
+      |                              ^~~~~~~~
+../Src/ApplicationCode.c:33:30: note: 'uint32_t' is defined in header '<stdint.h>'; did you forget to '#include <stdint.h>'?
+../Src/ApplicationCode.c:33:30: note: each undeclared identifier is reported only once for each function it appears in
+../Src/ApplicationCode.c:33:40: error: expected expression before ')' token
+   33 |         uint32_t * clkPtr = (uint32_t *) GPIOG_RCC_ENABLE_ADDRESS;
+      |                                        ^
+../Src/ApplicationCode.c:34:20: error: 'moderPtr' undeclared (first use in this function)
+   34 |         uint32_t * moderPtr = (uint32_t *) GPIOG_MODER_ADDRESS;
+      |                    ^~~~~~~~
+../Src/ApplicationCode.c:34:42: error: expected expression before ')' token
+   34 |         uint32_t * moderPtr = (uint32_t *) GPIOG_MODER_ADDRESS;
+      |                                          ^
+../Src/ApplicationCode.c: In function 'TurnOnRedLED':
+../Src/ApplicationCode.c:46:9: error: unknown type name 'uint32_t'
+   46 |         uint32_t * gpiogODRPtr = (uint32_t*) GPIOG_ODR_ADDRESS;
+      |         ^~~~~~~~
+../Src/ApplicationCode.c:46:9: note: 'uint32_t' is defined in header '<stdint.h>'; did you forget to '#include <stdint.h>'?
+../Src/ApplicationCode.c:46:35: error: 'uint32_t' undeclared (first use in this function)
+   46 |         uint32_t * gpiogODRPtr = (uint32_t*) GPIOG_ODR_ADDRESS;
+      |                                   ^~~~~~~~
+../Src/ApplicationCode.c:46:35: note: 'uint32_t' is defined in header '<stdint.h>'; did you forget to '#include <stdint.h>'?
+../Src/ApplicationCode.c:46:44: error: expected expression before ')' token
+   46 |         uint32_t * gpiogODRPtr = (uint32_t*) GPIOG_ODR_ADDRESS;
+      |                                            ^
+../Src/ApplicationCode.c: In function 'TurnOffRedLED':
+../Src/ApplicationCode.c:54:9: error: unknown type name 'uint32_t'
+   54 |         uint32_t * gpiogODRPtr = (uint32_t*) GPIOG_ODR_ADDRESS;
+      |         ^~~~~~~~
+../Src/ApplicationCode.c:54:9: note: 'uint32_t' is defined in header '<stdint.h>'; did you forget to '#include <stdint.h>'?
+../Src/ApplicationCode.c:54:35: error: 'uint32_t' undeclared (first use in this function)
+   54 |         uint32_t * gpiogODRPtr = (uint32_t*) GPIOG_ODR_ADDRESS;
+      |                                   ^~~~~~~~
+../Src/ApplicationCode.c:54:35: note: 'uint32_t' is defined in header '<stdint.h>'; did you forget to '#include <stdint.h>'?
+../Src/ApplicationCode.c:54:44: error: expected expression before ')' token
+   54 |         uint32_t * gpiogODRPtr = (uint32_t*) GPIOG_ODR_ADDRESS;
+      |                                            ^
+../Src/ApplicationCode.c: In function 'ToggleRedLED':
+../Src/ApplicationCode.c:62:9: error: unknown type name 'uint32_t'
+   62 |         uint32_t * gpiogODRPtr = (uint32_t*) GPIOG_ODR_ADDRESS;
+      |         ^~~~~~~~
+../Src/ApplicationCode.c:62:9: note: 'uint32_t' is defined in header '<stdint.h>'; did you forget to '#include <stdint.h>'?
+../Src/ApplicationCode.c:62:35: error: 'uint32_t' undeclared (first use in this function)
+   62 |         uint32_t * gpiogODRPtr = (uint32_t*) GPIOG_ODR_ADDRESS;
+      |                                   ^~~~~~~~
+../Src/ApplicationCode.c:62:35: note: 'uint32_t' is defined in header '<stdint.h>'; did you forget to '#include <stdint.h>'?
+../Src/ApplicationCode.c:62:44: error: expected expression before ')' token
+   62 |         uint32_t * gpiogODRPtr = (uint32_t*) GPIOG_ODR_ADDRESS;
+      |                                            ^
+make: *** [Src/subdir.mk:28: Src/ApplicationCode.o] Error 1
+make: *** Waiting for unfinished jobs....
+In file included from ../Src/main.c:20:
+../Src/main.c: In function 'main':
+../Inc/ApplicationCode.h:11:28: error: expected ')' before ';' token
+   11 | #define DEFAULT_DELAY 25000;
+      |                            ^
+../Src/main.c:32:26: note: in expansion of macro 'DEFAULT_DELAY'
+   32 |                 AppDelay(DEFAULT_DELAY);
+      |                          ^~~~~~~~~~~~~
+../Src/main.c:32:25: note: to match this '('
+   32 |                 AppDelay(DEFAULT_DELAY);
+      |                         ^
+make: *** [Src/subdir.mk:28: Src/main.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+13:49:43 **** Incremental Build of configuration Debug for project SKadkhodayanLab1 ****
+make -j16 all 
+arm-none-eabi-gcc "../Src/ApplicationCode.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F429I_DISC1 -DSTM32 -DSTM32F429ZITx -DSTM32F4 -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/ApplicationCode.d" -MT"Src/ApplicationCode.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/ApplicationCode.o"
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F429I_DISC1 -DSTM32 -DSTM32F429ZITx -DSTM32F4 -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
+../Src/ApplicationCode.c:17:15: error: unknown type name 'uint32_t'
+   17 | void AppDelay(uint32_t time) {
+      |               ^~~~~~~~
+../Src/ApplicationCode.c:1:1: note: 'uint32_t' is defined in header '<stdint.h>'; did you forget to '#include <stdint.h>'?
+  +++ |+#include <stdint.h>
+    1 | /*
+../Src/ApplicationCode.c: In function 'EnablePeripheralsAndClocks':
+../Src/ApplicationCode.c:33:9: error: unknown type name 'uint32_t'
+   33 |         uint32_t * clkPtr = (uint32_t *) GPIOG_RCC_ENABLE_ADDRESS;
+      |         ^~~~~~~~
+../Src/ApplicationCode.c:33:9: note: 'uint32_t' is defined in header '<stdint.h>'; did you forget to '#include <stdint.h>'?
+../Src/ApplicationCode.c:33:30: error: 'uint32_t' undeclared (first use in this function)
+   33 |         uint32_t * clkPtr = (uint32_t *) GPIOG_RCC_ENABLE_ADDRESS;
+      |                              ^~~~~~~~
+../Src/ApplicationCode.c:33:30: note: 'uint32_t' is defined in header '<stdint.h>'; did you forget to '#include <stdint.h>'?
+../Src/ApplicationCode.c:33:30: note: each undeclared identifier is reported only once for each function it appears in
+../Src/ApplicationCode.c:33:40: error: expected expression before ')' token
+   33 |         uint32_t * clkPtr = (uint32_t *) GPIOG_RCC_ENABLE_ADDRESS;
+      |                                        ^
+../Src/ApplicationCode.c:34:20: error: 'moderPtr' undeclared (first use in this function)
+   34 |         uint32_t * moderPtr = (uint32_t *) GPIOG_MODER_ADDRESS;
+      |                    ^~~~~~~~
+../Src/ApplicationCode.c:34:42: error: expected expression before ')' token
+   34 |         uint32_t * moderPtr = (uint32_t *) GPIOG_MODER_ADDRESS;
+      |                                          ^
+../Src/ApplicationCode.c: In function 'TurnOnRedLED':
+../Src/ApplicationCode.c:46:9: error: unknown type name 'uint32_t'
+   46 |         uint32_t * gpiogODRPtr = (uint32_t*) GPIOG_ODR_ADDRESS;
+      |         ^~~~~~~~
+../Src/ApplicationCode.c:46:9: note: 'uint32_t' is defined in header '<stdint.h>'; did you forget to '#include <stdint.h>'?
+../Src/ApplicationCode.c:46:35: error: 'uint32_t' undeclared (first use in this function)
+   46 |         uint32_t * gpiogODRPtr = (uint32_t*) GPIOG_ODR_ADDRESS;
+      |                                   ^~~~~~~~
+../Src/ApplicationCode.c:46:35: note: 'uint32_t' is defined in header '<stdint.h>'; did you forget to '#include <stdint.h>'?
+../Src/ApplicationCode.c:46:44: error: expected expression before ')' token
+   46 |         uint32_t * gpiogODRPtr = (uint32_t*) GPIOG_ODR_ADDRESS;
+      |                                            ^
+../Src/ApplicationCode.c: In function 'TurnOffRedLED':
+../Src/ApplicationCode.c:54:9: error: unknown type name 'uint32_t'
+   54 |         uint32_t * gpiogODRPtr = (uint32_t*) GPIOG_ODR_ADDRESS;
+      |         ^~~~~~~~
+../Src/ApplicationCode.c:54:9: note: 'uint32_t' is defined in header '<stdint.h>'; did you forget to '#include <stdint.h>'?
+../Src/ApplicationCode.c:54:35: error: 'uint32_t' undeclared (first use in this function)
+   54 |         uint32_t * gpiogODRPtr = (uint32_t*) GPIOG_ODR_ADDRESS;
+      |                                   ^~~~~~~~
+../Src/ApplicationCode.c:54:35: note: 'uint32_t' is defined in header '<stdint.h>'; did you forget to '#include <stdint.h>'?
+../Src/ApplicationCode.c:54:44: error: expected expression before ')' token
+   54 |         uint32_t * gpiogODRPtr = (uint32_t*) GPIOG_ODR_ADDRESS;
+      |                                            ^
+../Src/ApplicationCode.c: In function 'ToggleRedLED':
+../Src/ApplicationCode.c:62:9: error: unknown type name 'uint32_t'
+   62 |         uint32_t * gpiogODRPtr = (uint32_t*) GPIOG_ODR_ADDRESS;
+      |         ^~~~~~~~
+../Src/ApplicationCode.c:62:9: note: 'uint32_t' is defined in header '<stdint.h>'; did you forget to '#include <stdint.h>'?
+../Src/ApplicationCode.c:62:35: error: 'uint32_t' undeclared (first use in this function)
+   62 |         uint32_t * gpiogODRPtr = (uint32_t*) GPIOG_ODR_ADDRESS;
+      |                                   ^~~~~~~~
+../Src/ApplicationCode.c:62:35: note: 'uint32_t' is defined in header '<stdint.h>'; did you forget to '#include <stdint.h>'?
+../Src/ApplicationCode.c:62:44: error: expected expression before ')' token
+   62 |         uint32_t * gpiogODRPtr = (uint32_t*) GPIOG_ODR_ADDRESS;
+      |                                            ^
+make: *** [Src/subdir.mk:28: Src/ApplicationCode.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+13:50:49 **** Incremental Build of configuration Debug for project SKadkhodayanLab1 ****
+make -j16 all 
+arm-none-eabi-gcc "../Src/ApplicationCode.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F429I_DISC1 -DSTM32 -DSTM32F429ZITx -DSTM32F4 -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/ApplicationCode.d" -MT"Src/ApplicationCode.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/ApplicationCode.o"
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F429I_DISC1 -DSTM32 -DSTM32F429ZITx -DSTM32F4 -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
+../Src/ApplicationCode.c: In function 'AppDelay':
+../Src/ApplicationCode.c:21:14: warning: variable 'destinationArray' set but not used [-Wunused-but-set-variable]
+   21 |         char destinationArray[LENGTH_OF_FIRST_NAME];
+      |              ^~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "SKadkhodayanLab1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\seank\OneDrive - UCB-O365\ECEN2370\SKadkhodayanLab1\STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SKadkhodayanLab1.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SKadkhodayanLab1.elf
+ 
+arm-none-eabi-size  SKadkhodayanLab1.elf 
+arm-none-eabi-objdump -h -S SKadkhodayanLab1.elf  > "SKadkhodayanLab1.list"
+   text	   data	    bss	    dec	    hex	filename
+    920	      0	   1568	   2488	    9b8	SKadkhodayanLab1.elf
+Finished building: default.size.stdout
+ 
+Finished building: SKadkhodayanLab1.list
+ 
+13:51:01 **** Incremental Build of configuration Debug for project SKadkhodayanLab1 ****
+make -j16 all 
+arm-none-eabi-size  SKadkhodayanLab1.elf 
+   text	   data	    bss	    dec	    hex	filename
+    920	      0	   1568	   2488	    9b8	SKadkhodayanLab1.elf
+Finished building: default.size.stdout
+ 
+13:52:47 **** Incremental Build of configuration Debug for project SKadkhodayanLab1 ****
+make -j16 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F429I_DISC1 -DSTM32 -DSTM32F429ZITx -DSTM32F4 -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
+arm-none-eabi-gcc -o "SKadkhodayanLab1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\seank\OneDrive - UCB-O365\ECEN2370\SKadkhodayanLab1\STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SKadkhodayanLab1.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SKadkhodayanLab1.elf
+ 
+arm-none-eabi-size  SKadkhodayanLab1.elf 
+arm-none-eabi-objdump -h -S SKadkhodayanLab1.elf  > "SKadkhodayanLab1.list"
+   text	   data	    bss	    dec	    hex	filename
+    896	      0	   1568	   2464	    9a0	SKadkhodayanLab1.elf
+Finished building: default.size.stdout
+ 
+Finished building: SKadkhodayanLab1.list
+ 
+13:53:21 **** Incremental Build of configuration Debug for project SKadkhodayanLab1 ****
+make -j16 all 
+arm-none-eabi-size  SKadkhodayanLab1.elf 
+   text	   data	    bss	    dec	    hex	filename
+    896	      0	   1568	   2464	    9a0	SKadkhodayanLab1.elf
+Finished building: default.size.stdout
+ 
+13:54:51 **** Incremental Build of configuration Debug for project SKadkhodayanLab1 ****
+make -j16 all 
+arm-none-eabi-gcc "../Src/ApplicationCode.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F429I_DISC1 -DSTM32 -DSTM32F429ZITx -DSTM32F4 -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/ApplicationCode.d" -MT"Src/ApplicationCode.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/ApplicationCode.o"
+../Src/ApplicationCode.c: In function 'AppDelay':
+../Src/ApplicationCode.c:21:14: warning: variable 'destinationArray' set but not used [-Wunused-but-set-variable]
+   21 |         char destinationArray[LENGTH_OF_FIRST_NAME];
+      |              ^~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "SKadkhodayanLab1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\seank\OneDrive - UCB-O365\ECEN2370\SKadkhodayanLab1\STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SKadkhodayanLab1.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SKadkhodayanLab1.elf
+ 
+arm-none-eabi-size  SKadkhodayanLab1.elf 
+arm-none-eabi-objdump -h -S SKadkhodayanLab1.elf  > "SKadkhodayanLab1.list"
+   text	   data	    bss	    dec	    hex	filename
+    896	      0	   1568	   2464	    9a0	SKadkhodayanLab1.elf
+Finished building: default.size.stdout
+ 
+Finished building: SKadkhodayanLab1.list
+ 
+13:55:28 **** Incremental Build of configuration Debug for project SKadkhodayanLab1 ****
+make -j16 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F429I_DISC1 -DSTM32 -DSTM32F429ZITx -DSTM32F4 -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/main.o"
+arm-none-eabi-gcc -o "SKadkhodayanLab1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\seank\OneDrive - UCB-O365\ECEN2370\SKadkhodayanLab1\STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SKadkhodayanLab1.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SKadkhodayanLab1.elf
+ 
+arm-none-eabi-size  SKadkhodayanLab1.elf 
+arm-none-eabi-objdump -h -S SKadkhodayanLab1.elf  > "SKadkhodayanLab1.list"
+   text	   data	    bss	    dec	    hex	filename
+    920	      0	   1568	   2488	    9b8	SKadkhodayanLab1.elf
+Finished building: default.size.stdout
+ 
+Finished building: SKadkhodayanLab1.list
+ 
+13:56:34 **** Incremental Build of configuration Debug for project SKadkhodayanLab1 ****
+make -j16 all 
+arm-none-eabi-gcc "../Src/ApplicationCode.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F429I_DISC1 -DSTM32 -DSTM32F429ZITx -DSTM32F4 -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/ApplicationCode.d" -MT"Src/ApplicationCode.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/ApplicationCode.o"
+arm-none-eabi-gcc -o "SKadkhodayanLab1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\seank\OneDrive - UCB-O365\ECEN2370\SKadkhodayanLab1\STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SKadkhodayanLab1.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SKadkhodayanLab1.elf
+ 
+arm-none-eabi-size  SKadkhodayanLab1.elf 
+arm-none-eabi-objdump -h -S SKadkhodayanLab1.elf  > "SKadkhodayanLab1.list"
+   text	   data	    bss	    dec	    hex	filename
+    920	      0	   1568	   2488	    9b8	SKadkhodayanLab1.elf
+Finished building: default.size.stdout
+ 
+Finished building: SKadkhodayanLab1.list
+ 
+13:28:30 **** Build of configuration Debug for project SKadkhodayanLab1 ****
+make -j16 all 
+arm-none-eabi-gcc "../Src/ApplicationCode.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F429I_DISC1 -DSTM32 -DSTM32F429ZITx -DSTM32F4 -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/ApplicationCode.d" -MT"Src/ApplicationCode.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Src/ApplicationCode.o"
+arm-none-eabi-gcc -o "SKadkhodayanLab1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\seank\OneDrive - UCB-O365\ECEN2370\SKadkhodayanLab1\STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SKadkhodayanLab1.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SKadkhodayanLab1.elf
+ 
+arm-none-eabi-size  SKadkhodayanLab1.elf 
+arm-none-eabi-objdump -h -S SKadkhodayanLab1.elf  > "SKadkhodayanLab1.list"
+   text	   data	    bss	    dec	    hex	filename
+    920	      0	   1568	   2488	    9b8	SKadkhodayanLab1.elf
+Finished building: default.size.stdout
+ 
+Finished building: SKadkhodayanLab1.list
+ 
+13:35:17 **** Incremental Build of configuration Debug for project SKadkhodayanLab1 ****
+make -j16 all 
+arm-none-eabi-size  SKadkhodayanLab1.elf 
+   text	   data	    bss	    dec	    hex	filename
+    920	      0	   1568	   2488	    9b8	SKadkhodayanLab1.elf
+Finished building: default.size.stdout
+ 
