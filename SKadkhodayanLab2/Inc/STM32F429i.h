@@ -71,5 +71,8 @@ typedef struct // RCC_RegDef_t struct
 #define GPIOG_BASE_ADDR 0x40021800				// GPIOG peripheral base address
 #define RCC ((RCC_RegDef_t *) RCC_BASE_ADDR) 	// Create a pointer to the base address of the RCC register
 
+// Enable and disable GPIOG clock macros
+#define GPIOG_CLK_ENABLE() (RCC->AHB1ENR |= (1 << 6))
+#define GPIOG_CLK_DISABLE() (RCC->AHB1ENR &= ~(1 << 6))
 
 #endif /* STM32F429I_H_ */

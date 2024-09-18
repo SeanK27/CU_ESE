@@ -68,7 +68,7 @@ uint8_t PinAltFunMode; 	// Alternate Function mode
 void GPIO_Init(GPIO_RegDef_t * GPIOPort, GPIO_PinConfig_t * PinConfig);
 
 // Enables or disables the appropriate clock given the GPIO port
-void GPIO_ClockControl(GPIO_RegDef_t * GPIOPort, uint8_t * PinStatus);
+void GPIO_ClockControl(GPIO_RegDef_t * GPIOPort, uint8_t PinStatus);
 
 // Reads the value from the specified input pin from the specified GPIO port
 void GPIO_ReadFromInputPin(GPIO_RegDef_t * GPIOPort, uint8_t * ReadPin);
