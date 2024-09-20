@@ -8,6 +8,11 @@
 #ifndef LED_DRIVER_H_
 #define LED_DRIVER_H_
 
+#include "STM32F429i.h"
+
+#define LED_RED_PIN 14
+#define LED_GREEN_PIN 13
+
 // Initializes the specified LED
 void LED_Init(uint8_t LEDPin);
 

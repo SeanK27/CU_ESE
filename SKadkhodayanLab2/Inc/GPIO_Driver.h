@@ -65,7 +65,7 @@ uint8_t PinAltFunMode; 	// Alternate Function mode
 
 
 // Initializes the GPIO peripheral based on the configurations provided
-void GPIO_Init(GPIO_RegDef_t * GPIOPort, GPIO_PinConfig_t * PinConfig);
+void GPIO_Init(GPIO_RegDef_t * GPIOPort, GPIO_PinConfig_t PinConfig);
 
 // Enables or disables the appropriate clock given the GPIO port
 void GPIO_ClockControl(GPIO_RegDef_t * GPIOPort, uint8_t PinStatus);
@@ -74,10 +74,10 @@ void GPIO_ClockControl(GPIO_RegDef_t * GPIOPort, uint8_t PinStatus);
 void GPIO_ReadFromInputPin(GPIO_RegDef_t * GPIOPort, uint8_t * ReadPin);
 
 // Writes to the specified output pin of the provided GPIO port
-void GPIO_WriteToOutputPin(GPIO_RegDef_t * GPIOPort, uint8_t * WritePin, uint9_t * WriteVal);
+void GPIO_WriteToOutputPin(GPIO_RegDef_t * GPIOPort, uint8_t WritePin, uint8_t WriteVal);
 
 // Toggles the specified pin in the specified GPIO Port
-void GPIO_ToggleOutputPin(GPIO_RegDef_t * GPIOPort, uint8_t * TogglePin);
+void GPIO_ToggleOutputPin(GPIO_RegDef_t * GPIOPort, uint8_t TogglePin);
 
 
 

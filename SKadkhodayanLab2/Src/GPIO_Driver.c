@@ -13,7 +13,7 @@ void GPIO_ClockControl(GPIO_RegDef_t * GPIOPort, uint8_t PinStatus) {
 	if (PinStatus == ENABLE) {
 
 		// Check which GPIO port we will be using
-		if (GPIOPort == GPIOG_BASE_ADDR) {
+		if (GPIOPort == GPIOG) {
 			RCC->AHB1ENR |= (1 << 6);	// Enabling the clock with the 6th bit corresponding to GPIOG
 		}
 	}
@@ -22,13 +22,13 @@ void GPIO_ClockControl(GPIO_RegDef_t * GPIOPort, uint8_t PinStatus) {
 	if (PinStatus == DISABLE) {
 
 		// Check which GPIO port we will be using
-		if (GPIOPort == GPIOG_BASE_ADDR) {
+		if (GPIOPort == GPIOG) {
 			RCC->AHB1ENR &= ~(1 << 6);	// Disabling the clock with the 6th bit corresponding to GPIOG
 		}
 	}
 }
 
-void GPIO_WriteToOutputPin(GPIO_RegDef_t * GPIOPort, uint8_t * WritePin, uint8_t WriteVal) {
+void GPIO_WriteToOutputPin(GPIO_RegDef_t * GPIOPort, uint8_t WritePin, uint8_t WriteVal) {
 
 	// Check the write value
 	if (WriteVal == 1) {
@@ -39,7 +39,7 @@ void GPIO_WriteToOutputPin(GPIO_RegDef_t * GPIOPort, uint8_t * WritePin, uint8_t
 	}
 }
 
-void GPIO_ToggleOutputPin(GPIO_RegDef_t * GPIOPort, uint8_t * TogglePin) {
+void GPIO_ToggleOutputPin(GPIO_RegDef_t * GPIOPort, uint8_t TogglePin) {
 
 	// XOR the corresponding bit, which flips it
 	GPIOPort->ODR ^= (1 << TogglePin);
@@ -56,7 +56,7 @@ void GPIO_Init(GPIO_RegDef_t * GPIOPort, GPIO_PinConfig_t PinConfig) {
 	temp = PinConfig.PinMode << (2 * PinConfig.PinNumber);
 
 	// Clear bits with ~(b'11) at corresponding pin
-    GPIOPort->MODER &= ~(0x3 << (2 * PinConfig->PinNumber));
+    GPIOPort->MODER &= ~(0x3 << (2 * PinConfig.PinNumber));
 
     // Set appropriate bits with the temp register
     GPIOPort->MODER |= temp;
@@ -68,7 +68,7 @@ void GPIO_Init(GPIO_RegDef_t * GPIOPort, GPIO_PinConfig_t PinConfig) {
    	temp = PinConfig.PinSpeed << (2 * PinConfig.PinNumber);
 
    	// Clear bits with ~(b'11) at corresponding pin
-    GPIOPort->OSPEEDR &= ~(0x3 << (2 * PinConfig->PinNumber));
+    GPIOPort->OSPEEDR &= ~(0x3 << (2 * PinConfig.PinNumber));
 
     // Set appropriate bits with the temp register
     GPIOPort->OSPEEDR |= temp;
@@ -81,7 +81,7 @@ void GPIO_Init(GPIO_RegDef_t * GPIOPort, GPIO_PinConfig_t PinConfig) {
     temp = PinConfig.PinPuPdControl << (2 * PinConfig.PinNumber);
 
     // Clear bits with ~(b'11) at corresponding pin
-    GPIOPort->PUPDR &= ~(0x3 << (2 * PinConfig->PinNumber));
+    GPIOPort->PUPDR &= ~(0x3 << (2 * PinConfig.PinNumber));
 
     // Set appropriate bits with the temp register
     GPIOPort->PUPDR |= temp;
@@ -93,7 +93,7 @@ void GPIO_Init(GPIO_RegDef_t * GPIOPort, GPIO_PinConfig_t PinConfig) {
     temp = PinConfig.OPType << PinConfig.PinNumber;
 
     // Clear bits with ~(1) at corresponding pin
-    GPIOPort->OTYPER &= ~(1 << (PinConfig->PinNumber));
+    GPIOPort->OTYPER &= ~(1 << (PinConfig.PinNumber));
 
     // Set appropriate bits with the temp register
     GPIOPort->OTYPER |= temp;

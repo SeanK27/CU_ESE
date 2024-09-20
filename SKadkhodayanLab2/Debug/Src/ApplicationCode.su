@@ -1,0 +1,10 @@
+../Src/ApplicationCode.c:16:6:greenLEDInit	8	static
+../Src/ApplicationCode.c:22:6:redLEDInit	8	static
+../Src/ApplicationCode.c:28:6:toggleGreenLED	8	static
+../Src/ApplicationCode.c:34:6:toggleRedLED	8	static
+../Src/ApplicationCode.c:40:6:activateGreenLED	8	static
+../Src/ApplicationCode.c:46:6:activateRedLED	8	static
+../Src/ApplicationCode.c:52:6:deactivateGreenLED	8	static
+../Src/ApplicationCode.c:58:6:deactivateRedLED	8	static
+../Src/ApplicationCode.c:64:6:AppDelay	32	static
+../Src/ApplicationCode.c:80:6:applicationInit	8	static

@@ -1,0 +1,962 @@
+
+SKadkhodayanLab2.elf:     file format elf32-littlearm
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .isr_vector   000001ac  08000000  08000000  00001000  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  1 .text         00000498  080001ac  080001ac  000011ac  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .rodata       00000000  08000644  0800064c  0000164c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  3 .ARM.extab    00000000  08000644  08000644  0000164c  2**0
+                  CONTENTS
+  4 .ARM          00000000  08000644  08000644  0000164c  2**0
+                  CONTENTS
+  5 .preinit_array 00000000  08000644  0800064c  0000164c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  6 .init_array   00000004  08000644  08000644  00001644  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  7 .fini_array   00000004  08000648  08000648  00001648  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  8 .data         00000000  20000000  20000000  0000164c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  9 .ccmram       00000000  10000000  10000000  0000164c  2**0
+                  CONTENTS
+ 10 .bss          00000020  20000000  20000000  00002000  2**2
+                  ALLOC
+ 11 ._user_heap_stack 00000600  20000020  20000020  00002000  2**0
+                  ALLOC
+ 12 .ARM.attributes 00000030  00000000  00000000  0000164c  2**0
+                  CONTENTS, READONLY
+ 13 .debug_info   00000bfc  00000000  00000000  0000167c  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 14 .debug_abbrev 000004b4  00000000  00000000  00002278  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 15 .debug_aranges 00000150  00000000  00000000  00002730  2**3
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 16 .debug_rnglists 000000df  00000000  00000000  00002880  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 17 .debug_macro  00001441  00000000  00000000  0000295f  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 18 .debug_line   0000190b  00000000  00000000  00003da0  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 19 .debug_str    00004422  00000000  00000000  000056ab  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 20 .comment      00000043  00000000  00000000  00009acd  2**0
+                  CONTENTS, READONLY
+ 21 .debug_frame  00000360  00000000  00000000  00009b10  2**2
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 22 .debug_line_str 00000066  00000000  00000000  00009e70  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+
+Disassembly of section .text:
+
+080001ac <__do_global_dtors_aux>:
+ 80001ac:	b510      	push	{r4, lr}
+ 80001ae:	4c05      	ldr	r4, [pc, #20]	@ (80001c4 <__do_global_dtors_aux+0x18>)
+ 80001b0:	7823      	ldrb	r3, [r4, #0]
+ 80001b2:	b933      	cbnz	r3, 80001c2 <__do_global_dtors_aux+0x16>
+ 80001b4:	4b04      	ldr	r3, [pc, #16]	@ (80001c8 <__do_global_dtors_aux+0x1c>)
+ 80001b6:	b113      	cbz	r3, 80001be <__do_global_dtors_aux+0x12>
+ 80001b8:	4804      	ldr	r0, [pc, #16]	@ (80001cc <__do_global_dtors_aux+0x20>)
+ 80001ba:	f3af 8000 	nop.w
+ 80001be:	2301      	movs	r3, #1
+ 80001c0:	7023      	strb	r3, [r4, #0]
+ 80001c2:	bd10      	pop	{r4, pc}
+ 80001c4:	20000000 	.word	0x20000000
+ 80001c8:	00000000 	.word	0x00000000
+ 80001cc:	0800062c 	.word	0x0800062c
+
+080001d0 <frame_dummy>:
+ 80001d0:	b508      	push	{r3, lr}
+ 80001d2:	4b03      	ldr	r3, [pc, #12]	@ (80001e0 <frame_dummy+0x10>)
+ 80001d4:	b11b      	cbz	r3, 80001de <frame_dummy+0xe>
+ 80001d6:	4903      	ldr	r1, [pc, #12]	@ (80001e4 <frame_dummy+0x14>)
+ 80001d8:	4803      	ldr	r0, [pc, #12]	@ (80001e8 <frame_dummy+0x18>)
+ 80001da:	f3af 8000 	nop.w
+ 80001de:	bd08      	pop	{r3, pc}
+ 80001e0:	00000000 	.word	0x00000000
+ 80001e4:	20000004 	.word	0x20000004
+ 80001e8:	0800062c 	.word	0x0800062c
+
+080001ec <greenLEDInit>:
+#include "GPIO_Driver.h"
+
+// Create name array for AppDelay
+uint32_t nameArray[NAMELENGTH] = {'S', 'E', 'A', 'N'};
+
+void greenLEDInit() {
+ 80001ec:	b580      	push	{r7, lr}
+ 80001ee:	af00      	add	r7, sp, #0
+
+    // Initialize the green LED
+    LED_Init(LED_GREEN_PIN);
+ 80001f0:	200d      	movs	r0, #13
+ 80001f2:	f000 f93d 	bl	8000470 <LED_Init>
+}
+ 80001f6:	bf00      	nop
+ 80001f8:	bd80      	pop	{r7, pc}
+
+080001fa <redLEDInit>:
+
+void redLEDInit() {
+ 80001fa:	b580      	push	{r7, lr}
+ 80001fc:	af00      	add	r7, sp, #0
+
+    // Initialize the red LED
+    LED_Init(LED_RED_PIN);
+ 80001fe:	200e      	movs	r0, #14
+ 8000200:	f000 f936 	bl	8000470 <LED_Init>
+}
+ 8000204:	bf00      	nop
+ 8000206:	bd80      	pop	{r7, pc}
+
+08000208 <toggleGreenLED>:
+
+void toggleGreenLED() {
+ 8000208:	b580      	push	{r7, lr}
+ 800020a:	af00      	add	r7, sp, #0
+
+    // Toggle the green LED
+    ToggleLED(LED_GREEN_PIN);
+ 800020c:	200d      	movs	r0, #13
+ 800020e:	f000 f965 	bl	80004dc <ToggleLED>
+}
+ 8000212:	bf00      	nop
+ 8000214:	bd80      	pop	{r7, pc}
+
+08000216 <toggleRedLED>:
+
+void toggleRedLED() {
+ 8000216:	b580      	push	{r7, lr}
+ 8000218:	af00      	add	r7, sp, #0
+
+    // Toggle the red LED
+    ToggleLED(LED_RED_PIN);
+ 800021a:	200e      	movs	r0, #14
+ 800021c:	f000 f95e 	bl	80004dc <ToggleLED>
+}
+ 8000220:	bf00      	nop
+ 8000222:	bd80      	pop	{r7, pc}
+
+08000224 <AppDelay>:
+
+    // Deactivate the red LED
+    GPIO_WriteToOutputPin(GPIOG, LED_RED_PIN, RESET);
+}
+
+void AppDelay(uint32_t time) {
+ 8000224:	b480      	push	{r7}
+ 8000226:	b087      	sub	sp, #28
+ 8000228:	af00      	add	r7, sp, #0
+ 800022a:	6078      	str	r0, [r7, #4]
+
+	// Create two arrays to store the name
+	char sean[NAMELENGTH] = {'S', 'E', 'A', 'N'};
+ 800022c:	4b13      	ldr	r3, [pc, #76]	@ (800027c <AppDelay+0x58>)
+ 800022e:	60fb      	str	r3, [r7, #12]
+	[[maybe_unused]] char destinationArray[NAMELENGTH];
+
+	// Iterate through the array to create a crude delay function
+	for (int i = 0; i < time; i++) {
+ 8000230:	2300      	movs	r3, #0
+ 8000232:	617b      	str	r3, [r7, #20]
+ 8000234:	e016      	b.n	8000264 <AppDelay+0x40>
+
+		for (int j = 0; j < NAMELENGTH; j++) {
+ 8000236:	2300      	movs	r3, #0
+ 8000238:	613b      	str	r3, [r7, #16]
+ 800023a:	e00d      	b.n	8000258 <AppDelay+0x34>
+
+			destinationArray[j] = sean[j];
+ 800023c:	f107 020c 	add.w	r2, r7, #12
+ 8000240:	693b      	ldr	r3, [r7, #16]
+ 8000242:	4413      	add	r3, r2
+ 8000244:	7819      	ldrb	r1, [r3, #0]
+ 8000246:	f107 0208 	add.w	r2, r7, #8
+ 800024a:	693b      	ldr	r3, [r7, #16]
+ 800024c:	4413      	add	r3, r2
+ 800024e:	460a      	mov	r2, r1
+ 8000250:	701a      	strb	r2, [r3, #0]
+		for (int j = 0; j < NAMELENGTH; j++) {
+ 8000252:	693b      	ldr	r3, [r7, #16]
+ 8000254:	3301      	adds	r3, #1
+ 8000256:	613b      	str	r3, [r7, #16]
+ 8000258:	693b      	ldr	r3, [r7, #16]
+ 800025a:	2b03      	cmp	r3, #3
+ 800025c:	ddee      	ble.n	800023c <AppDelay+0x18>
+	for (int i = 0; i < time; i++) {
+ 800025e:	697b      	ldr	r3, [r7, #20]
+ 8000260:	3301      	adds	r3, #1
+ 8000262:	617b      	str	r3, [r7, #20]
+ 8000264:	697b      	ldr	r3, [r7, #20]
+ 8000266:	687a      	ldr	r2, [r7, #4]
+ 8000268:	429a      	cmp	r2, r3
+ 800026a:	d8e4      	bhi.n	8000236 <AppDelay+0x12>
+		}
+	}
+}
+ 800026c:	bf00      	nop
+ 800026e:	bf00      	nop
+ 8000270:	371c      	adds	r7, #28
+ 8000272:	46bd      	mov	sp, r7
+ 8000274:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8000278:	4770      	bx	lr
+ 800027a:	bf00      	nop
+ 800027c:	4e414553 	.word	0x4e414553
+
+08000280 <applicationInit>:
+
+void applicationInit() {
+ 8000280:	b580      	push	{r7, lr}
+ 8000282:	af00      	add	r7, sp, #0
+
+	// Initialize the GPIO clock
+	GPIO_ClockControl(GPIOG, ENABLE);
+ 8000284:	2101      	movs	r1, #1
+ 8000286:	4809      	ldr	r0, [pc, #36]	@ (80002ac <applicationInit+0x2c>)
+ 8000288:	f000 f812 	bl	80002b0 <GPIO_ClockControl>
+
+    // Initialize the red LED
+    redLEDInit();
+ 800028c:	f7ff ffb5 	bl	80001fa <redLEDInit>
+
+    // Initialize the green LED
+    greenLEDInit();
+ 8000290:	f7ff ffac 	bl	80001ec <greenLEDInit>
+
+    // Add the scheduler event to toggle the red LED
+    addSchedulerEvent(RED_TOGGLE_EVENT);
+ 8000294:	2001      	movs	r0, #1
+ 8000296:	f000 f93b 	bl	8000510 <addSchedulerEvent>
+
+    // Add the scheduler event to delay
+    addSchedulerEvent(DELAY_EVENT);
+ 800029a:	2002      	movs	r0, #2
+ 800029c:	f000 f938 	bl	8000510 <addSchedulerEvent>
+
+    // Add the scheduler event to toggle the green LED
+    addSchedulerEvent(GREEN_TOGGLE_EVENT);
+ 80002a0:	2004      	movs	r0, #4
+ 80002a2:	f000 f935 	bl	8000510 <addSchedulerEvent>
+}
+ 80002a6:	bf00      	nop
+ 80002a8:	bd80      	pop	{r7, pc}
+ 80002aa:	bf00      	nop
+ 80002ac:	40021800 	.word	0x40021800
+
+080002b0 <GPIO_ClockControl>:
+ *      Author: seank
+ */
+
+#include "GPIO_Driver.h"
+
+void GPIO_ClockControl(GPIO_RegDef_t * GPIOPort, uint8_t PinStatus) {
+ 80002b0:	b480      	push	{r7}
+ 80002b2:	b083      	sub	sp, #12
+ 80002b4:	af00      	add	r7, sp, #0
+ 80002b6:	6078      	str	r0, [r7, #4]
+ 80002b8:	460b      	mov	r3, r1
+ 80002ba:	70fb      	strb	r3, [r7, #3]
+
+	// Check whether pin is already enabled
+	if (PinStatus == ENABLE) {
+ 80002bc:	78fb      	ldrb	r3, [r7, #3]
+ 80002be:	2b01      	cmp	r3, #1
+ 80002c0:	d109      	bne.n	80002d6 <GPIO_ClockControl+0x26>
+
+		// Check which GPIO port we will be using
+		if (GPIOPort == GPIOG) {
+ 80002c2:	687b      	ldr	r3, [r7, #4]
+ 80002c4:	4a0d      	ldr	r2, [pc, #52]	@ (80002fc <GPIO_ClockControl+0x4c>)
+ 80002c6:	4293      	cmp	r3, r2
+ 80002c8:	d105      	bne.n	80002d6 <GPIO_ClockControl+0x26>
+			RCC->AHB1ENR |= (1 << 6);	// Enabling the clock with the 6th bit corresponding to GPIOG
+ 80002ca:	4b0d      	ldr	r3, [pc, #52]	@ (8000300 <GPIO_ClockControl+0x50>)
+ 80002cc:	6b1b      	ldr	r3, [r3, #48]	@ 0x30
+ 80002ce:	4a0c      	ldr	r2, [pc, #48]	@ (8000300 <GPIO_ClockControl+0x50>)
+ 80002d0:	f043 0340 	orr.w	r3, r3, #64	@ 0x40
+ 80002d4:	6313      	str	r3, [r2, #48]	@ 0x30
+		}
+	}
+
+	// Check whether pin is already disabled
+	if (PinStatus == DISABLE) {
+ 80002d6:	78fb      	ldrb	r3, [r7, #3]
+ 80002d8:	2b00      	cmp	r3, #0
+ 80002da:	d109      	bne.n	80002f0 <GPIO_ClockControl+0x40>
+
+		// Check which GPIO port we will be using
+		if (GPIOPort == GPIOG) {
+ 80002dc:	687b      	ldr	r3, [r7, #4]
+ 80002de:	4a07      	ldr	r2, [pc, #28]	@ (80002fc <GPIO_ClockControl+0x4c>)
+ 80002e0:	4293      	cmp	r3, r2
+ 80002e2:	d105      	bne.n	80002f0 <GPIO_ClockControl+0x40>
+			RCC->AHB1ENR &= ~(1 << 6);	// Disabling the clock with the 6th bit corresponding to GPIOG
+ 80002e4:	4b06      	ldr	r3, [pc, #24]	@ (8000300 <GPIO_ClockControl+0x50>)
+ 80002e6:	6b1b      	ldr	r3, [r3, #48]	@ 0x30
+ 80002e8:	4a05      	ldr	r2, [pc, #20]	@ (8000300 <GPIO_ClockControl+0x50>)
+ 80002ea:	f023 0340 	bic.w	r3, r3, #64	@ 0x40
+ 80002ee:	6313      	str	r3, [r2, #48]	@ 0x30
+		}
+	}
+}
+ 80002f0:	bf00      	nop
+ 80002f2:	370c      	adds	r7, #12
+ 80002f4:	46bd      	mov	sp, r7
+ 80002f6:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 80002fa:	4770      	bx	lr
+ 80002fc:	40021800 	.word	0x40021800
+ 8000300:	40023800 	.word	0x40023800
+
+08000304 <GPIO_ToggleOutputPin>:
+	if (WriteVal == 0) {
+		GPIOPort->ODR &= ~(1 << WritePin); // Write 0 to the ODR register and shift to the proper pin
+	}
+}
+
+void GPIO_ToggleOutputPin(GPIO_RegDef_t * GPIOPort, uint8_t TogglePin) {
+ 8000304:	b480      	push	{r7}
+ 8000306:	b083      	sub	sp, #12
+ 8000308:	af00      	add	r7, sp, #0
+ 800030a:	6078      	str	r0, [r7, #4]
+ 800030c:	460b      	mov	r3, r1
+ 800030e:	70fb      	strb	r3, [r7, #3]
+
+	// XOR the corresponding bit, which flips it
+	GPIOPort->ODR ^= (1 << TogglePin);
+ 8000310:	687b      	ldr	r3, [r7, #4]
+ 8000312:	695b      	ldr	r3, [r3, #20]
+ 8000314:	78fa      	ldrb	r2, [r7, #3]
+ 8000316:	2101      	movs	r1, #1
+ 8000318:	fa01 f202 	lsl.w	r2, r1, r2
+ 800031c:	405a      	eors	r2, r3
+ 800031e:	687b      	ldr	r3, [r7, #4]
+ 8000320:	615a      	str	r2, [r3, #20]
+}
+ 8000322:	bf00      	nop
+ 8000324:	370c      	adds	r7, #12
+ 8000326:	46bd      	mov	sp, r7
+ 8000328:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 800032c:	4770      	bx	lr
+
+0800032e <GPIO_Init>:
+
+void GPIO_Init(GPIO_RegDef_t * GPIOPort, GPIO_PinConfig_t PinConfig) {
+ 800032e:	b480      	push	{r7}
+ 8000330:	b08b      	sub	sp, #44	@ 0x2c
+ 8000332:	af00      	add	r7, sp, #0
+ 8000334:	60f8      	str	r0, [r7, #12]
+ 8000336:	1d3b      	adds	r3, r7, #4
+ 8000338:	e883 0006 	stmia.w	r3, {r1, r2}
+	///////////////////////////////////MODER Config///////////////////////
+	// Create temporary variable
+	uint32_t temp;
+
+	// Configure port mode
+	temp = PinConfig.PinMode << (2 * PinConfig.PinNumber);
+ 800033c:	797b      	ldrb	r3, [r7, #5]
+ 800033e:	461a      	mov	r2, r3
+ 8000340:	793b      	ldrb	r3, [r7, #4]
+ 8000342:	005b      	lsls	r3, r3, #1
+ 8000344:	fa02 f303 	lsl.w	r3, r2, r3
+ 8000348:	627b      	str	r3, [r7, #36]	@ 0x24
+
+	// Clear bits with ~(b'11) at corresponding pin
+    GPIOPort->MODER &= ~(0x3 << (2 * PinConfig.PinNumber));
+ 800034a:	68fb      	ldr	r3, [r7, #12]
+ 800034c:	681b      	ldr	r3, [r3, #0]
+ 800034e:	793a      	ldrb	r2, [r7, #4]
+ 8000350:	0052      	lsls	r2, r2, #1
+ 8000352:	2103      	movs	r1, #3
+ 8000354:	fa01 f202 	lsl.w	r2, r1, r2
+ 8000358:	43d2      	mvns	r2, r2
+ 800035a:	401a      	ands	r2, r3
+ 800035c:	68fb      	ldr	r3, [r7, #12]
+ 800035e:	601a      	str	r2, [r3, #0]
+
+    // Set appropriate bits with the temp register
+    GPIOPort->MODER |= temp;
+ 8000360:	68fb      	ldr	r3, [r7, #12]
+ 8000362:	681a      	ldr	r2, [r3, #0]
+ 8000364:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
+ 8000366:	431a      	orrs	r2, r3
+ 8000368:	68fb      	ldr	r3, [r7, #12]
+ 800036a:	601a      	str	r2, [r3, #0]
+    //////////////////////////////////////////////////////////////////////
+
+    ///////////////////////////////////SPEED Config///////////////////////
+
+   	// Configure port speed
+   	temp = PinConfig.PinSpeed << (2 * PinConfig.PinNumber);
+ 800036c:	79fb      	ldrb	r3, [r7, #7]
+ 800036e:	461a      	mov	r2, r3
+ 8000370:	793b      	ldrb	r3, [r7, #4]
+ 8000372:	005b      	lsls	r3, r3, #1
+ 8000374:	fa02 f303 	lsl.w	r3, r2, r3
+ 8000378:	627b      	str	r3, [r7, #36]	@ 0x24
+
+   	// Clear bits with ~(b'11) at corresponding pin
+    GPIOPort->OSPEEDR &= ~(0x3 << (2 * PinConfig.PinNumber));
+ 800037a:	68fb      	ldr	r3, [r7, #12]
+ 800037c:	689b      	ldr	r3, [r3, #8]
+ 800037e:	793a      	ldrb	r2, [r7, #4]
+ 8000380:	0052      	lsls	r2, r2, #1
+ 8000382:	2103      	movs	r1, #3
+ 8000384:	fa01 f202 	lsl.w	r2, r1, r2
+ 8000388:	43d2      	mvns	r2, r2
+ 800038a:	401a      	ands	r2, r3
+ 800038c:	68fb      	ldr	r3, [r7, #12]
+ 800038e:	609a      	str	r2, [r3, #8]
+
+    // Set appropriate bits with the temp register
+    GPIOPort->OSPEEDR |= temp;
+ 8000390:	68fb      	ldr	r3, [r7, #12]
+ 8000392:	689a      	ldr	r2, [r3, #8]
+ 8000394:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
+ 8000396:	431a      	orrs	r2, r3
+ 8000398:	68fb      	ldr	r3, [r7, #12]
+ 800039a:	609a      	str	r2, [r3, #8]
+
+
+    ///////////////////////////////////PUPDR Config///////////////////////
+
+    // Configure port mode
+    temp = PinConfig.PinPuPdControl << (2 * PinConfig.PinNumber);
+ 800039c:	7a3b      	ldrb	r3, [r7, #8]
+ 800039e:	461a      	mov	r2, r3
+ 80003a0:	793b      	ldrb	r3, [r7, #4]
+ 80003a2:	005b      	lsls	r3, r3, #1
+ 80003a4:	fa02 f303 	lsl.w	r3, r2, r3
+ 80003a8:	627b      	str	r3, [r7, #36]	@ 0x24
+
+    // Clear bits with ~(b'11) at corresponding pin
+    GPIOPort->PUPDR &= ~(0x3 << (2 * PinConfig.PinNumber));
+ 80003aa:	68fb      	ldr	r3, [r7, #12]
+ 80003ac:	68db      	ldr	r3, [r3, #12]
+ 80003ae:	793a      	ldrb	r2, [r7, #4]
+ 80003b0:	0052      	lsls	r2, r2, #1
+ 80003b2:	2103      	movs	r1, #3
+ 80003b4:	fa01 f202 	lsl.w	r2, r1, r2
+ 80003b8:	43d2      	mvns	r2, r2
+ 80003ba:	401a      	ands	r2, r3
+ 80003bc:	68fb      	ldr	r3, [r7, #12]
+ 80003be:	60da      	str	r2, [r3, #12]
+
+    // Set appropriate bits with the temp register
+    GPIOPort->PUPDR |= temp;
+ 80003c0:	68fb      	ldr	r3, [r7, #12]
+ 80003c2:	68da      	ldr	r2, [r3, #12]
+ 80003c4:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
+ 80003c6:	431a      	orrs	r2, r3
+ 80003c8:	68fb      	ldr	r3, [r7, #12]
+ 80003ca:	60da      	str	r2, [r3, #12]
+    //////////////////////////////////////////////////////////////////////
+
+    ///////////////////////////////////OPTYPE Config///////////////////////
+
+    // Configure port mode
+    temp = PinConfig.OPType << PinConfig.PinNumber;
+ 80003cc:	79bb      	ldrb	r3, [r7, #6]
+ 80003ce:	461a      	mov	r2, r3
+ 80003d0:	793b      	ldrb	r3, [r7, #4]
+ 80003d2:	fa02 f303 	lsl.w	r3, r2, r3
+ 80003d6:	627b      	str	r3, [r7, #36]	@ 0x24
+
+    // Clear bits with ~(1) at corresponding pin
+    GPIOPort->OTYPER &= ~(1 << (PinConfig.PinNumber));
+ 80003d8:	68fb      	ldr	r3, [r7, #12]
+ 80003da:	685b      	ldr	r3, [r3, #4]
+ 80003dc:	793a      	ldrb	r2, [r7, #4]
+ 80003de:	4611      	mov	r1, r2
+ 80003e0:	2201      	movs	r2, #1
+ 80003e2:	408a      	lsls	r2, r1
+ 80003e4:	43d2      	mvns	r2, r2
+ 80003e6:	401a      	ands	r2, r3
+ 80003e8:	68fb      	ldr	r3, [r7, #12]
+ 80003ea:	605a      	str	r2, [r3, #4]
+
+    // Set appropriate bits with the temp register
+    GPIOPort->OTYPER |= temp;
+ 80003ec:	68fb      	ldr	r3, [r7, #12]
+ 80003ee:	685a      	ldr	r2, [r3, #4]
+ 80003f0:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
+ 80003f2:	431a      	orrs	r2, r3
+ 80003f4:	68fb      	ldr	r3, [r7, #12]
+ 80003f6:	605a      	str	r2, [r3, #4]
+    //////////////////////////////////////////////////////////////////////
+
+    ///////////////////////////////////AFR Config///////////////////////
+
+    // Check if the pin mode equals alt function macro
+    if (PinConfig.PinMode == GPIO_PinMode_Alternate) {
+ 80003f8:	797b      	ldrb	r3, [r7, #5]
+ 80003fa:	2b0a      	cmp	r3, #10
+ 80003fc:	d131      	bne.n	8000462 <GPIO_Init+0x134>
+
+        // Bit selection
+        uint32_t AFRRegSel = PinConfig.PinNumber / 8;		// Selecting proper AFR register. When pin number >8 then 1, <8 then 0
+ 80003fe:	793b      	ldrb	r3, [r7, #4]
+ 8000400:	08db      	lsrs	r3, r3, #3
+ 8000402:	b2db      	uxtb	r3, r3
+ 8000404:	623b      	str	r3, [r7, #32]
+        uint32_t AFRPinPos = PinConfig.PinNumber % 8;		// Selecting proper Pin. When pin number >8 it will be the remainder, when less it will be the pin number
+ 8000406:	793b      	ldrb	r3, [r7, #4]
+ 8000408:	f003 0307 	and.w	r3, r3, #7
+ 800040c:	61fb      	str	r3, [r7, #28]
+        uint8_t AFRBitShift = AFRPinPos * 4;				// Selecting shift amount and targeting specific bits in register
+ 800040e:	69fb      	ldr	r3, [r7, #28]
+ 8000410:	b2db      	uxtb	r3, r3
+ 8000412:	009b      	lsls	r3, r3, #2
+ 8000414:	76fb      	strb	r3, [r7, #27]
+
+        // Bit shifting
+        temp = PinConfig.PinAltFunMode << AFRBitShift;		// Shift the input AFR value accordingly and store in temp
+ 8000416:	7a7b      	ldrb	r3, [r7, #9]
+ 8000418:	461a      	mov	r2, r3
+ 800041a:	7efb      	ldrb	r3, [r7, #27]
+ 800041c:	fa02 f303 	lsl.w	r3, r2, r3
+ 8000420:	627b      	str	r3, [r7, #36]	@ 0x24
+
+        // Clear the original value in proper register
+        uint32_t clearVal = (0xF << AFRBitShift); 			// 0xF is 1111 in binary, shift this into correct location
+ 8000422:	7efb      	ldrb	r3, [r7, #27]
+ 8000424:	220f      	movs	r2, #15
+ 8000426:	fa02 f303 	lsl.w	r3, r2, r3
+ 800042a:	617b      	str	r3, [r7, #20]
+        GPIOPort->AFR[AFRRegSel] &= ~(clearVal);			// Invert to 0000 then store into the correct AFR register
+ 800042c:	68fb      	ldr	r3, [r7, #12]
+ 800042e:	6a3a      	ldr	r2, [r7, #32]
+ 8000430:	3208      	adds	r2, #8
+ 8000432:	f853 2022 	ldr.w	r2, [r3, r2, lsl #2]
+ 8000436:	697b      	ldr	r3, [r7, #20]
+ 8000438:	43db      	mvns	r3, r3
+ 800043a:	ea02 0103 	and.w	r1, r2, r3
+ 800043e:	68fb      	ldr	r3, [r7, #12]
+ 8000440:	6a3a      	ldr	r2, [r7, #32]
+ 8000442:	3208      	adds	r2, #8
+ 8000444:	f843 1022 	str.w	r1, [r3, r2, lsl #2]
+
+        // Set the AFR configuration
+        GPIOPort->AFR[AFRRegSel] |= temp;					// Store the configuration into the correct AFR register
+ 8000448:	68fb      	ldr	r3, [r7, #12]
+ 800044a:	6a3a      	ldr	r2, [r7, #32]
+ 800044c:	3208      	adds	r2, #8
+ 800044e:	f853 2022 	ldr.w	r2, [r3, r2, lsl #2]
+ 8000452:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
+ 8000454:	ea42 0103 	orr.w	r1, r2, r3
+ 8000458:	68fb      	ldr	r3, [r7, #12]
+ 800045a:	6a3a      	ldr	r2, [r7, #32]
+ 800045c:	3208      	adds	r2, #8
+ 800045e:	f843 1022 	str.w	r1, [r3, r2, lsl #2]
+
+    }
+
+    //////////////////////////////////////////////////////////////////////
+
+}
+ 8000462:	bf00      	nop
+ 8000464:	372c      	adds	r7, #44	@ 0x2c
+ 8000466:	46bd      	mov	sp, r7
+ 8000468:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 800046c:	4770      	bx	lr
+	...
+
+08000470 <LED_Init>:
+ */
+
+#include "LED_Driver.h"
+#include "GPIO_Driver.h"
+
+void LED_Init(uint8_t LEDPin) {
+ 8000470:	b580      	push	{r7, lr}
+ 8000472:	b084      	sub	sp, #16
+ 8000474:	af00      	add	r7, sp, #0
+ 8000476:	4603      	mov	r3, r0
+ 8000478:	71fb      	strb	r3, [r7, #7]
+
+	// Instantiate a GPIO_PinConfig_t struct
+	GPIO_PinConfig_t GPIOConfig = {0};
+ 800047a:	f107 0308 	add.w	r3, r7, #8
+ 800047e:	2200      	movs	r2, #0
+ 8000480:	601a      	str	r2, [r3, #0]
+ 8000482:	809a      	strh	r2, [r3, #4]
+
+	switch(LEDPin) {
+ 8000484:	79fb      	ldrb	r3, [r7, #7]
+ 8000486:	2b0d      	cmp	r3, #13
+ 8000488:	d011      	beq.n	80004ae <LED_Init+0x3e>
+ 800048a:	2b0e      	cmp	r3, #14
+ 800048c:	d11f      	bne.n	80004ce <LED_Init+0x5e>
+
+	// Configure for Red LED
+	case LED_RED_PIN:
+
+		// Configure the GPIO struct to drive the red LED
+		GPIOConfig.PinNumber = LED_RED_PIN;
+ 800048e:	230e      	movs	r3, #14
+ 8000490:	723b      	strb	r3, [r7, #8]
+		GPIOConfig.PinMode = GPIO_PinMode_GPOut;
+ 8000492:	2301      	movs	r3, #1
+ 8000494:	727b      	strb	r3, [r7, #9]
+		GPIOConfig.PinSpeed = GPIO_Speed_Medium;
+ 8000496:	2301      	movs	r3, #1
+ 8000498:	72fb      	strb	r3, [r7, #11]
+		GPIOConfig.PinPuPdControl = GPIO_PUPDR_None;
+ 800049a:	2300      	movs	r3, #0
+ 800049c:	733b      	strb	r3, [r7, #12]
+
+		// Initialize the GPIO Pin
+		GPIO_Init(GPIOG, GPIOConfig);
+ 800049e:	f107 0308 	add.w	r3, r7, #8
+ 80004a2:	e893 0006 	ldmia.w	r3, {r1, r2}
+ 80004a6:	480c      	ldr	r0, [pc, #48]	@ (80004d8 <LED_Init+0x68>)
+ 80004a8:	f7ff ff41 	bl	800032e <GPIO_Init>
+
+		break;
+ 80004ac:	e00f      	b.n	80004ce <LED_Init+0x5e>
+
+	// Configure for Green LED
+	case LED_GREEN_PIN:
+
+		// Configure the GPIO struct to drive the green LED
+		GPIOConfig.PinNumber = LED_GREEN_PIN;
+ 80004ae:	230d      	movs	r3, #13
+ 80004b0:	723b      	strb	r3, [r7, #8]
+		GPIOConfig.PinMode = GPIO_PinMode_GPOut;
+ 80004b2:	2301      	movs	r3, #1
+ 80004b4:	727b      	strb	r3, [r7, #9]
+		GPIOConfig.PinSpeed = GPIO_Speed_Medium;
+ 80004b6:	2301      	movs	r3, #1
+ 80004b8:	72fb      	strb	r3, [r7, #11]
+		GPIOConfig.PinPuPdControl = GPIO_PUPDR_None;
+ 80004ba:	2300      	movs	r3, #0
+ 80004bc:	733b      	strb	r3, [r7, #12]
+
+		// Initialize the GPIO Pin
+		GPIO_Init(GPIOG, GPIOConfig);
+ 80004be:	f107 0308 	add.w	r3, r7, #8
+ 80004c2:	e893 0006 	ldmia.w	r3, {r1, r2}
+ 80004c6:	4804      	ldr	r0, [pc, #16]	@ (80004d8 <LED_Init+0x68>)
+ 80004c8:	f7ff ff31 	bl	800032e <GPIO_Init>
+
+		break;
+ 80004cc:	bf00      	nop
+	}
+}
+ 80004ce:	bf00      	nop
+ 80004d0:	3710      	adds	r7, #16
+ 80004d2:	46bd      	mov	sp, r7
+ 80004d4:	bd80      	pop	{r7, pc}
+ 80004d6:	bf00      	nop
+ 80004d8:	40021800 	.word	0x40021800
+
+080004dc <ToggleLED>:
+
+void ToggleLED(uint8_t LEDPin) {
+ 80004dc:	b580      	push	{r7, lr}
+ 80004de:	b082      	sub	sp, #8
+ 80004e0:	af00      	add	r7, sp, #0
+ 80004e2:	4603      	mov	r3, r0
+ 80004e4:	71fb      	strb	r3, [r7, #7]
+
+	switch(LEDPin) {
+ 80004e6:	79fb      	ldrb	r3, [r7, #7]
+ 80004e8:	2b0d      	cmp	r3, #13
+ 80004ea:	d006      	beq.n	80004fa <ToggleLED+0x1e>
+ 80004ec:	2b0e      	cmp	r3, #14
+ 80004ee:	d109      	bne.n	8000504 <ToggleLED+0x28>
+
+	// Toggle for Red LED
+	case LED_RED_PIN:
+
+		// Toggle Red Pin
+		GPIO_ToggleOutputPin(GPIOG, LED_RED_PIN);
+ 80004f0:	210e      	movs	r1, #14
+ 80004f2:	4806      	ldr	r0, [pc, #24]	@ (800050c <ToggleLED+0x30>)
+ 80004f4:	f7ff ff06 	bl	8000304 <GPIO_ToggleOutputPin>
+
+		break;
+ 80004f8:	e004      	b.n	8000504 <ToggleLED+0x28>
+
+	case LED_GREEN_PIN:
+
+		// Toggle Green Pin
+		GPIO_ToggleOutputPin(GPIOG, LED_GREEN_PIN);
+ 80004fa:	210d      	movs	r1, #13
+ 80004fc:	4803      	ldr	r0, [pc, #12]	@ (800050c <ToggleLED+0x30>)
+ 80004fe:	f7ff ff01 	bl	8000304 <GPIO_ToggleOutputPin>
+
+		break;
+ 8000502:	bf00      	nop
+	}
+}
+ 8000504:	bf00      	nop
+ 8000506:	3708      	adds	r7, #8
+ 8000508:	46bd      	mov	sp, r7
+ 800050a:	bd80      	pop	{r7, pc}
+ 800050c:	40021800 	.word	0x40021800
+
+08000510 <addSchedulerEvent>:
+
+#include "Scheduler.h"
+
+uint32_t ScheduledEvents = 0;
+
+void addSchedulerEvent(uint32_t event) {
+ 8000510:	b480      	push	{r7}
+ 8000512:	b083      	sub	sp, #12
+ 8000514:	af00      	add	r7, sp, #0
+ 8000516:	6078      	str	r0, [r7, #4]
+
+    // Add the event to the scheduled events
+    ScheduledEvents |= event;
+ 8000518:	4b05      	ldr	r3, [pc, #20]	@ (8000530 <addSchedulerEvent+0x20>)
+ 800051a:	681a      	ldr	r2, [r3, #0]
+ 800051c:	687b      	ldr	r3, [r7, #4]
+ 800051e:	4313      	orrs	r3, r2
+ 8000520:	4a03      	ldr	r2, [pc, #12]	@ (8000530 <addSchedulerEvent+0x20>)
+ 8000522:	6013      	str	r3, [r2, #0]
+}
+ 8000524:	bf00      	nop
+ 8000526:	370c      	adds	r7, #12
+ 8000528:	46bd      	mov	sp, r7
+ 800052a:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 800052e:	4770      	bx	lr
+ 8000530:	2000001c 	.word	0x2000001c
+
+08000534 <getScheduledEvents>:
+
+    // Remove the event from the scheduled events
+    ScheduledEvents &= ~event;
+}
+
+uint32_t getScheduledEvents() {
+ 8000534:	b480      	push	{r7}
+ 8000536:	af00      	add	r7, sp, #0
+
+    // Return the scheduled events
+    return ScheduledEvents;
+ 8000538:	4b03      	ldr	r3, [pc, #12]	@ (8000548 <getScheduledEvents+0x14>)
+ 800053a:	681b      	ldr	r3, [r3, #0]
+ 800053c:	4618      	mov	r0, r3
+ 800053e:	46bd      	mov	sp, r7
+ 8000540:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8000544:	4770      	bx	lr
+ 8000546:	bf00      	nop
+ 8000548:	2000001c 	.word	0x2000001c
+
+0800054c <main>:
+#if !defined(__SOFT_FP__) && defined(__ARM_FP)
+  #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
+#endif
+
+int main(void)
+{
+ 800054c:	b580      	push	{r7, lr}
+ 800054e:	b082      	sub	sp, #8
+ 8000550:	af00      	add	r7, sp, #0
+	// Create events variable
+	uint32_t eventsToRun = 0;
+ 8000552:	2300      	movs	r3, #0
+ 8000554:	607b      	str	r3, [r7, #4]
+
+	applicationInit();
+ 8000556:	f7ff fe93 	bl	8000280 <applicationInit>
+    /* Loop forever */
+	for(;;) {
+    // TODO: Suppress FPU warning
+
+    // Store the events to run
+    eventsToRun = getScheduledEvents();
+ 800055a:	f7ff ffeb 	bl	8000534 <getScheduledEvents>
+ 800055e:	6078      	str	r0, [r7, #4]
+
+    // Check if the corresponding toggle bit is a 1
+    if (eventsToRun & RED_TOGGLE_EVENT) {
+ 8000560:	687b      	ldr	r3, [r7, #4]
+ 8000562:	f003 0301 	and.w	r3, r3, #1
+ 8000566:	2b00      	cmp	r3, #0
+ 8000568:	d001      	beq.n	800056e <main+0x22>
+
+    	// Toggle red LED
+    	toggleRedLED();
+ 800056a:	f7ff fe54 	bl	8000216 <toggleRedLED>
+    }
+    if (eventsToRun & GREEN_TOGGLE_EVENT) {
+ 800056e:	687b      	ldr	r3, [r7, #4]
+ 8000570:	f003 0304 	and.w	r3, r3, #4
+ 8000574:	2b00      	cmp	r3, #0
+ 8000576:	d001      	beq.n	800057c <main+0x30>
+
+        // Toggle green LED
+    	toggleGreenLED();
+ 8000578:	f7ff fe46 	bl	8000208 <toggleGreenLED>
+    }
+    if (eventsToRun & DELAY_EVENT) {
+ 800057c:	687b      	ldr	r3, [r7, #4]
+ 800057e:	f003 0302 	and.w	r3, r3, #2
+ 8000582:	2b00      	cmp	r3, #0
+ 8000584:	d0e9      	beq.n	800055a <main+0xe>
+
+        // Add a delay
+        AppDelay(DELAYMAGNIFIER);
+ 8000586:	f241 7070 	movw	r0, #6000	@ 0x1770
+ 800058a:	f7ff fe4b 	bl	8000224 <AppDelay>
+    eventsToRun = getScheduledEvents();
+ 800058e:	e7e4      	b.n	800055a <main+0xe>
+
+08000590 <Reset_Handler>:
+
+  .section .text.Reset_Handler
+  .weak Reset_Handler
+  .type Reset_Handler, %function
+Reset_Handler:
+  ldr   r0, =_estack
+ 8000590:	480d      	ldr	r0, [pc, #52]	@ (80005c8 <LoopForever+0x2>)
+  mov   sp, r0          /* set stack pointer */
+ 8000592:	4685      	mov	sp, r0
+/* Call the clock system initialization function.*/
+  bl  SystemInit
+ 8000594:	f3af 8000 	nop.w
+
+/* Copy the data segment initializers from flash to SRAM */
+  ldr r0, =_sdata
+ 8000598:	480c      	ldr	r0, [pc, #48]	@ (80005cc <LoopForever+0x6>)
+  ldr r1, =_edata
+ 800059a:	490d      	ldr	r1, [pc, #52]	@ (80005d0 <LoopForever+0xa>)
+  ldr r2, =_sidata
+ 800059c:	4a0d      	ldr	r2, [pc, #52]	@ (80005d4 <LoopForever+0xe>)
+  movs r3, #0
+ 800059e:	2300      	movs	r3, #0
+  b LoopCopyDataInit
+ 80005a0:	e002      	b.n	80005a8 <LoopCopyDataInit>
+
+080005a2 <CopyDataInit>:
+
+CopyDataInit:
+  ldr r4, [r2, r3]
+ 80005a2:	58d4      	ldr	r4, [r2, r3]
+  str r4, [r0, r3]
+ 80005a4:	50c4      	str	r4, [r0, r3]
+  adds r3, r3, #4
+ 80005a6:	3304      	adds	r3, #4
+
+080005a8 <LoopCopyDataInit>:
+
+LoopCopyDataInit:
+  adds r4, r0, r3
+ 80005a8:	18c4      	adds	r4, r0, r3
+  cmp r4, r1
+ 80005aa:	428c      	cmp	r4, r1
+  bcc CopyDataInit
+ 80005ac:	d3f9      	bcc.n	80005a2 <CopyDataInit>
+
+/* Zero fill the bss segment. */
+  ldr r2, =_sbss
+ 80005ae:	4a0a      	ldr	r2, [pc, #40]	@ (80005d8 <LoopForever+0x12>)
+  ldr r4, =_ebss
+ 80005b0:	4c0a      	ldr	r4, [pc, #40]	@ (80005dc <LoopForever+0x16>)
+  movs r3, #0
+ 80005b2:	2300      	movs	r3, #0
+  b LoopFillZerobss
+ 80005b4:	e001      	b.n	80005ba <LoopFillZerobss>
+
+080005b6 <FillZerobss>:
+
+FillZerobss:
+  str  r3, [r2]
+ 80005b6:	6013      	str	r3, [r2, #0]
+  adds r2, r2, #4
+ 80005b8:	3204      	adds	r2, #4
+
+080005ba <LoopFillZerobss>:
+
+LoopFillZerobss:
+  cmp r2, r4
+ 80005ba:	42a2      	cmp	r2, r4
+  bcc FillZerobss
+ 80005bc:	d3fb      	bcc.n	80005b6 <FillZerobss>
+
+/* Call static constructors */
+  bl __libc_init_array
+ 80005be:	f000 f811 	bl	80005e4 <__libc_init_array>
+/* Call the application's entry point.*/
+  bl main
+ 80005c2:	f7ff ffc3 	bl	800054c <main>
+
+080005c6 <LoopForever>:
+
+LoopForever:
+  b LoopForever
+ 80005c6:	e7fe      	b.n	80005c6 <LoopForever>
+  ldr   r0, =_estack
+ 80005c8:	20030000 	.word	0x20030000
+  ldr r0, =_sdata
+ 80005cc:	20000000 	.word	0x20000000
+  ldr r1, =_edata
+ 80005d0:	20000000 	.word	0x20000000
+  ldr r2, =_sidata
+ 80005d4:	0800064c 	.word	0x0800064c
+  ldr r2, =_sbss
+ 80005d8:	20000000 	.word	0x20000000
+  ldr r4, =_ebss
+ 80005dc:	20000020 	.word	0x20000020
+
+080005e0 <ADC_IRQHandler>:
+ * @retval : None
+*/
+  .section .text.Default_Handler,"ax",%progbits
+Default_Handler:
+Infinite_Loop:
+  b Infinite_Loop
+ 80005e0:	e7fe      	b.n	80005e0 <ADC_IRQHandler>
+	...
+
+080005e4 <__libc_init_array>:
+ 80005e4:	b570      	push	{r4, r5, r6, lr}
+ 80005e6:	4d0d      	ldr	r5, [pc, #52]	@ (800061c <__libc_init_array+0x38>)
+ 80005e8:	4c0d      	ldr	r4, [pc, #52]	@ (8000620 <__libc_init_array+0x3c>)
+ 80005ea:	1b64      	subs	r4, r4, r5
+ 80005ec:	10a4      	asrs	r4, r4, #2
+ 80005ee:	2600      	movs	r6, #0
+ 80005f0:	42a6      	cmp	r6, r4
+ 80005f2:	d109      	bne.n	8000608 <__libc_init_array+0x24>
+ 80005f4:	4d0b      	ldr	r5, [pc, #44]	@ (8000624 <__libc_init_array+0x40>)
+ 80005f6:	4c0c      	ldr	r4, [pc, #48]	@ (8000628 <__libc_init_array+0x44>)
+ 80005f8:	f000 f818 	bl	800062c <_init>
+ 80005fc:	1b64      	subs	r4, r4, r5
+ 80005fe:	10a4      	asrs	r4, r4, #2
+ 8000600:	2600      	movs	r6, #0
+ 8000602:	42a6      	cmp	r6, r4
+ 8000604:	d105      	bne.n	8000612 <__libc_init_array+0x2e>
+ 8000606:	bd70      	pop	{r4, r5, r6, pc}
+ 8000608:	f855 3b04 	ldr.w	r3, [r5], #4
+ 800060c:	4798      	blx	r3
+ 800060e:	3601      	adds	r6, #1
+ 8000610:	e7ee      	b.n	80005f0 <__libc_init_array+0xc>
+ 8000612:	f855 3b04 	ldr.w	r3, [r5], #4
+ 8000616:	4798      	blx	r3
+ 8000618:	3601      	adds	r6, #1
+ 800061a:	e7f2      	b.n	8000602 <__libc_init_array+0x1e>
+ 800061c:	08000644 	.word	0x08000644
+ 8000620:	08000644 	.word	0x08000644
+ 8000624:	08000644 	.word	0x08000644
+ 8000628:	08000648 	.word	0x08000648
+
+0800062c <_init>:
+ 800062c:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 800062e:	bf00      	nop
+ 8000630:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 8000632:	bc08      	pop	{r3}
+ 8000634:	469e      	mov	lr, r3
+ 8000636:	4770      	bx	lr
+
+08000638 <_fini>:
+ 8000638:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 800063a:	bf00      	nop
+ 800063c:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 800063e:	bc08      	pop	{r3}
+ 8000640:	469e      	mov	lr, r3
+ 8000642:	4770      	bx	lr

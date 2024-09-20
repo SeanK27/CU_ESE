@@ -8,8 +8,10 @@
 #ifndef APPLICATIONCODE_H_
 #define APPLICATIONCODE_H_
 
+#include "STM32F429i.h"
+
 #define NAMELENGTH 4
-#define DELAYMAGNIFIER 250000
+#define DELAYMAGNIFIER 6000
 
 void applicationInit();
 void greenLEDInit();

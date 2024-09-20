@@ -1,0 +1,8 @@
+"./Src/ApplicationCode.o"
+"./Src/GPIO_Driver.o"
+"./Src/LED_Driver.o"
+"./Src/Scheduler.o"
+"./Src/main.o"
+"./Src/syscalls.o"
+"./Src/sysmem.o"
+"./Startup/startup_stm32f429zitx.o"

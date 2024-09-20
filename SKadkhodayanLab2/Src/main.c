@@ -17,6 +17,8 @@
  */
 
 #include <stdint.h>
+#include "ApplicationCode.h"
+#include "Scheduler.h"
 
 #if !defined(__SOFT_FP__) && defined(__ARM_FP)
   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
@@ -24,6 +26,33 @@
 
 int main(void)
 {
+	// Create events variable
+	uint32_t eventsToRun = 0;
+
+	applicationInit();
+
     /* Loop forever */
-	for(;;);
+	for(;;) {
+    // TODO: Suppress FPU warning
+
+    // Store the events to run
+    eventsToRun = getScheduledEvents();
+
+    // Check if the corresponding toggle bit is a 1
+    if (eventsToRun & RED_TOGGLE_EVENT) {
+
+    	// Toggle red LED
+    	toggleRedLED();
+    }
+    if (eventsToRun & GREEN_TOGGLE_EVENT) {
+
+        // Toggle green LED
+    	toggleGreenLED();
+    }
+    if (eventsToRun & DELAY_EVENT) {
+
+        // Add a delay
+        AppDelay(DELAYMAGNIFIER);
+    }
+  }
 }

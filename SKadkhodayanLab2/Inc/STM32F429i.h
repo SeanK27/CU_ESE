@@ -67,9 +67,10 @@ typedef struct // RCC_RegDef_t struct
     volatile uint32_t DCKCFGR;     // 0x8C: Dedicated clocks configuration register
 } RCC_RegDef_t;
 
-#define RCC_BASE_ADDR 0x40023800				// RCC peripheral base address
-#define GPIOG_BASE_ADDR 0x40021800				// GPIOG peripheral base address
-#define RCC ((RCC_RegDef_t *) RCC_BASE_ADDR) 	// Create a pointer to the base address of the RCC register
+#define RCC_BASE_ADDR 0x40023800					// RCC peripheral base address
+#define GPIOG_BASE_ADDR 0x40021800					// GPIOG peripheral base address
+#define GPIOG ((GPIO_RegDef_t*) GPIOG_BASE_ADDR)	// Create a pointer to the base address of the RCC register
+#define RCC ((RCC_RegDef_t *) RCC_BASE_ADDR) 		// Create a pointer to the base address of the RCC register
 
 // Enable and disable GPIOG clock macros
 #define GPIOG_CLK_ENABLE() (RCC->AHB1ENR |= (1 << 6))
