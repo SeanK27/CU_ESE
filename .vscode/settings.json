@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "gpio_driver.h": "c",
+        "button_driver.h": "c"
+    }
+}

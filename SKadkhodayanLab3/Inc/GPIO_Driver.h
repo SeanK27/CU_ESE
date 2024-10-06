@@ -52,6 +52,20 @@
 #define GPIO_PUPDR_PD 10
 #define GPIO_PUPDR_Reserved 11
 
+// GPIO Pin Interrupt Macros
+#define GPIO_PinInterrupt_Disable 00
+#define GPIO_PinInterrupt_RisingEdge 01
+#define GPIO_PinInterrupt_FallingEdge 10
+#define GPIO_PinInterrupt_RisingFallingEdge 11
+
+// GPIO Port Macros
+#define PORT_GPIOA 0
+#define PORT_GPIOB 1
+#define PORT_GPIOC 2
+#define PORT_GPIOD 3
+#define PORT_GPIOE 4
+#define PORT_GPIOF 5
+#define PORT_GPIOG 6
 
 typedef struct	// GPIO_PinConfig_t struct
 {
@@ -61,6 +75,8 @@ uint8_t OPType; 		// Output Type
 uint8_t PinSpeed; 		// Pin Speed
 uint8_t PinPuPdControl; // Pin Push up/ Pull Down Control
 uint8_t PinAltFunMode; 	// Alternate Function mode
+uint8_t PinInterruptMode; // Pin Interrupt Mode
+
 } GPIO_PinConfig_t;
 
 
@@ -71,7 +87,7 @@ void GPIO_Init(GPIO_RegDef_t * GPIOPort, GPIO_PinConfig_t PinConfig);
 void GPIO_ClockControl(GPIO_RegDef_t * GPIOPort, uint8_t PinStatus);
 
 // Reads the value from the specified input pin from the specified GPIO port
-void GPIO_ReadFromInputPin(GPIO_RegDef_t * GPIOPort, uint8_t ReadPin);
+uint8_t GPIO_ReadFromInputPin(GPIO_RegDef_t * GPIOPort, uint8_t ReadPin);
 
 // Writes to the specified output pin of the provided GPIO port
 void GPIO_WriteToOutputPin(GPIO_RegDef_t * GPIOPort, uint8_t WritePin, uint8_t WriteVal);
@@ -79,6 +95,11 @@ void GPIO_WriteToOutputPin(GPIO_RegDef_t * GPIOPort, uint8_t WritePin, uint8_t W
 // Toggles the specified pin in the specified GPIO Port
 void GPIO_ToggleOutputPin(GPIO_RegDef_t * GPIOPort, uint8_t TogglePin);
 
+// Returns the port number of the input GPIO pin
+uint16_t GPIO_ReturnPortNumber(GPIO_RegDef_t * GPIOPort);
+
+// Enables or disables the interrupt for the specified IRQ number
+void GPIO_InterruptConfig(uint8_t IRQNumber, uint8_t Status);
 
 
 #endif /* GPIO_DRIVER_H_ */
