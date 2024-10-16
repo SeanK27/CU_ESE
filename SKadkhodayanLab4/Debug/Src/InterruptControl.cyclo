@@ -1,0 +1,5 @@
+../Src/InterruptControl.c:10:6:NVIC_Enable_Interrupt	2
+../Src/InterruptControl.c:22:6:NVIC_Disable_Interrupt	2
+../Src/InterruptControl.c:34:6:NVIC_Clear_Pending_Interrupt	2
+../Src/InterruptControl.c:46:6:NVIC_Set_Pending_Interrupt	2
+../Src/InterruptControl.c:58:6:NVIC_Clear_Pending_EXTI_Bit	1
