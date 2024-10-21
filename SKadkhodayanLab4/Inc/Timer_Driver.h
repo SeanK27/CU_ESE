@@ -8,6 +8,22 @@
 #ifndef TIMER_DRIVER_H_
 #define TIMER_DRIVER_H_
 
+#include "STM32F429i.h"
+#include <stdbool.h>
+
+typedef struct {
+    uint32_t auto_reload_value;         // Auto-reload value (ARR) 16 bits
+    uint8_t master_mode;                // Master mode selection (MMS) 3 bits
+    uint8_t clock_division;             // Clock division selection (CKD) 2 bits
+    uint16_t prescaler;                 // Prescaler value (PSC) 16 bits
+    uint8_t center_aligned_mode;        // Center-aligned mode selection (CMS) 2 bits
+    uint8_t auto_reload_preload;        // Auto-reload preload enable (ARPE) 1 bit
+    uint8_t direction;                  // Counter direction (DIR) 1 bit
+    uint8_t update_interrupt_enable;    // Update interrupt enable (UIE) 1 bit
+    uint8_t one_pulse_mode;             // One-pulse mode (OPM) 1 bit
+
+} GPTimer_Config_t;
+
 // Initialize the timer
 void Timer_Init(GPTIMR_RegDef_t TimerX, GPTimer_Config_t *TimerConfig);
 

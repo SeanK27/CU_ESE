@@ -96,6 +96,30 @@ typedef struct {
     volatile uint32_t PR;           // 0x14: Pending register
 } EXTI_RegDef_t;
 
+typedef struct {
+    volatile uint32_t CR1;          // 0x00: Control register 1
+    volatile uint32_t CR2;          // 0x04: Control register 2
+    volatile uint32_t SMCR;         // 0x08: Slave mode control register
+    volatile uint32_t DIER;         // 0x0C: DMA/interrupt enable register
+    volatile uint32_t SR;           // 0x10: Status register
+    volatile uint32_t EGR;          // 0x14: Event generation register
+    volatile uint32_t CCMR1;        // 0x18: Capture/compare mode register 1
+    volatile uint32_t CCMR2;        // 0x1C: Capture/compare mode register 2
+    volatile uint32_t CCER;         // 0x20: Capture/compare enable register
+    volatile uint32_t CNT;          // 0x24: Counter
+    volatile uint32_t PSC;          // 0x28: Prescaler
+    volatile uint32_t ARR;          // 0x2C: Auto-reload register
+    volatile uint32_t RCR;          // 0x30: Repetition counter register
+    volatile uint32_t CCR1;         // 0x34: Capture/compare register 1
+    volatile uint32_t CCR2;         // 0x38: Capture/compare register 2
+    volatile uint32_t CCR3;         // 0x3C: Capture/compare register 3
+    volatile uint32_t CCR4;         // 0x40: Capture/compare register 4
+    volatile uint32_t BDTR;         // 0x44: Break and dead-time register
+    volatile uint32_t DCR;          // 0x48: DMA control register
+    volatile uint32_t DMAR;         // 0x4C: DMA address for full transfer
+    volatile uint32_t OR;           // 0x50: Option register
+} GPTIMR_RegDef_t;
+
 #define AHB1_BASE_ADDR 0x40020000					// AHB1 peripheral base address
 #define APB2_BASE_ADDR 0x40010000					// APB2 peripheral base address
 #define RCC_BASE_ADDR (AHB1_BASE_ADDR + 0x3800)     // RCC peripheral base address
@@ -121,6 +145,17 @@ typedef struct {
 
 #define ENABLE_SYSCFG_CLOCK() (RCC->APB2ENR |= (1 << 14))	// Enable the SYSCFG clock
 #define DISABLE_SYSCFG_CLOCK() (RCC->APB2ENR &= ~(1 << 14))	// Disable the SYSCFG clock
+
+#define TIM2_BASE_ADDR 0x40000000					// Timer 2 base address
+#define TIM5_BASE_ADDR 0x40000C00					// Timer 5 base address
+
+#define TIM2 ((GPTIMR_RegDef_t *) TIM2_BASE_ADDR)	// Create a pointer to the base address of Timer 2
+#define TIM5 ((GPTIMR_RegDef_t *) TIM5_BASE_ADDR)	// Create a pointer to the base address of Timer 5
+
+#define ENABLE_TIM2_CLOCK() (RCC->APB1ENR |= (1 << 0))	// Enable the Timer 2 clock
+#define DISABLE_TIM2_CLOCK() (RCC->APB1ENR &= ~(1 << 0))	// Disable the Timer 2 clock
+#define ENABLE_TIM5_CLOCK() (RCC->APB1ENR |= (1 << 3))	// Enable the Timer 5 clock
+#define DISABLE_TIM5_CLOCK() (RCC->APB1ENR &= ~(1 << 3))	// Disable the Timer 5 clock
 
 
 

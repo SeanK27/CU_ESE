@@ -60,4 +60,7 @@ uint32_t LED_Timer5_Get_Value(GPTIMR_RegDef_t TimerX);
 // Reconfigures auto reload of timer5 for the LED
 void LED_Timer5_Reconfigure_Auto_Reload(GPTIMR_RegDef_t TimerX, uint32_t AutoReloadValue);
 
+// Start Timer5
+void LED_Timer5_Start(GPTIMR_RegDef_t TimerX, uint32_t startValue);
+
 #endif /* LED_DRIVER_H_ */
