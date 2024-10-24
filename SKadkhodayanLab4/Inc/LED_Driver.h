@@ -28,28 +28,28 @@ void TurnOffLED(uint8_t LEDPin);
 void TurnOnLED(uint8_t LEDPin);
 
 // Initialize timer2 for the LED
-void LED_Timer2_Init(GPTIMR_RegDef_t TimerX, GPTimer_Config_t *TimerConfig);
+void LED_Timer2_Init();
 
 // Starts timer2 for the LED
-void LED_Timer2_Start(GPTIMR_RegDef_t TimerX);
+void LED_Timer2_Start();
 
 // Stops timer2 for the LED
-void LED_Timer2_Stop(GPTIMR_RegDef_t TimerX);
+void LED_Timer2_Stop();
 
 // Resets timer2 for the LED
-void LED_Timer2_Reset(GPTIMR_RegDef_t TimerX);
+void LED_Timer2_Reset();
 
 // Initialize timer5 for the LED
-void LED_Timer5_Init(GPTIMR_RegDef_t TimerX, GPTimer_Config_t *TimerConfig);
+void LED_Timer5_Init();
 
 // Starts timer5 for the LED
-void LED_Timer5_Start(GPTIMR_RegDef_t TimerX);
+void LED_Timer5_Start();
 
 // Stops timer5 for the LED
-void LED_Timer5_Stop(GPTIMR_RegDef_t TimerX);
+void LED_Timer5_Stop();
 
 // Resets timer5 for the LED
-void LED_Timer5_Reset(GPTIMR_RegDef_t TimerX);
+void LED_Timer5_Reset();
 
 // Returns auto-reload value of timer5
 uint32_t LED_Timer5_Get_Auto_Reload_Value(GPTIMR_RegDef_t TimerX);

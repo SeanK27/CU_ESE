@@ -12,6 +12,9 @@
 
 #define EXTI0_IRQ_NUM 6
 
+#define TIM2_IRQ_NUM 28
+#define TIM5_IRQ_NUM 50
+
 void NVIC_Enable_Interrupt(uint8_t IRQnum);
 void NVIC_Disable_Interrupt(uint8_t IRQnum);
 void NVIC_Clear_Pending_Interrupt(uint8_t IRQnum);
