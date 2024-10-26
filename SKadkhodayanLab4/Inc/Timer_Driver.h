@@ -11,8 +11,8 @@
 #include "STM32F429i.h"
 #include <stdbool.h>
 
-#define ARR_VALUE 0x800000
-#define PSC_VALUE 0x10000
+#define TIM2_ARR_VALUE 100000
+#define TIM2_PSC_VALUE 800
 
 // Timer master mode selection (MMS) 3 bits
 #define TIM_MMS_RESET 000

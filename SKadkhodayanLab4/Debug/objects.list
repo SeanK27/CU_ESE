@@ -4,6 +4,7 @@
 "./Src/InterruptControl.o"
 "./Src/LED_Driver.o"
 "./Src/Scheduler.o"
+"./Src/Timer_Driver.o"
 "./Src/main.o"
 "./Src/syscalls.o"
 "./Src/sysmem.o"

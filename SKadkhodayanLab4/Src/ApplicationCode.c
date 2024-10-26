@@ -118,38 +118,35 @@ void applicationInit() {
     // Deactivate the green LED
     deactivateGreenLED();
 
-    // Compiler flags to only compile interrupt code if the flag is 1
-    #if USE_INTERRUPT_FOR_BUTTON == 1
+    #if DUAL_TIMER_USAGE == 1
 
-        // Initialize the user button as an interrupt
+        // Initialize Button as Interrupt
         InitializeUserButtonAsInterrupt();
 
+        // Initialize Timer 5
+        LED_Timer5_Init();
     #endif
 
-    // Compiler flags to only compile polling code if the flag is 0
-    #if USE_INTERRUPT_FOR_BUTTON == 0
+    #if DUAL_TIMER_USAGE == 0
 
-        // Initialize the user button as a polling routine
-        executeButtonPollingRoutine();
+        // Initialize Timer 2
+        LED_Timer2_Init();
 
-        // Add button polling event to scheduler
-        addSchedulerEvent(POLL_BUTTON_EVENT);
-
+        // Start Timer 2
+        LED_Timer2_Start();
     #endif
 
-    // Add the scheduler event to toggle the red LED
+    // Add the scheduler event for Red LED
     addSchedulerEvent(RED_TOGGLE_EVENT);
 
     // Add the scheduler event to delay
     addSchedulerEvent(DELAY_EVENT);
 
-    // Add the scheduler event to toggle the green LED
-    addSchedulerEvent(GREEN_TOGGLE_EVENT);
-
 }
 
-// Compiler flags to only compile interrupt code if the flag is 1
-#if USE_INTERRUPT_FOR_BUTTON == 1
+#if DUAL_TIMER_USAGE == 1
+
+// TODO: Do all the dual timer stuff here
 
 void InitializeUserButtonAsInterrupt() {
     
@@ -157,6 +154,7 @@ void InitializeUserButtonAsInterrupt() {
     User_Button_Interrupt_Enable();
 }
 
+// Button Interrupt Handler
 void EXTI0_IRQHandler() {
 
     // Disable the interrupt so it doesn't trigger during execution
@@ -173,6 +171,63 @@ void EXTI0_IRQHandler() {
 
     // Re-enable the interrupt
     NVIC_Enable_Interrupt(EXTI0_IRQ_NUM);
+}
+
+void TIM5_IRQHandler() {
+
+    // Disable the interrupt so it doesn't trigger during execution
+    NVIC_Disable_Interrupt(TIM5_IRQ_NUM);
+
+    // Check if the interrupt flag is set
+    if (TIM5->SR & (1 << 0)) {
+
+        // Clear the interrupt flag
+        TIM5->SR &= ~(1 << 0);
+
+        // Toggle the green LED
+        toggleGreenLED();
+    }
+
+    // Clear the pending interrupt in the NVIC register to prevent another 
+    NVIC_Clear_Pending_Interrupt(TIM5_IRQ_NUM);
+
+    // Reset the timer
+    LED_Reset_Timer5();
+
+    // Re-enable the interrupt
+    NVIC_Enable_Interrupt(TIM5_IRQ_NUM);
+}
+
+#endif
+
+
+// Compiler flags to only compile interrupt code if the flag is 0
+#if DUAL_TIMER_USAGE == 0
+
+// Timer 2 Interrupt Handler
+void TIM2_IRQHandler() {
+
+    // Disable the interrupt so it doesn't trigger during execution
+    NVIC_Disable_Interrupt(TIM2_IRQ_NUM);
+
+    // Check if the interrupt flag is set
+    if (TIM2->SR & (1 << 0)) {
+
+        // Clear the interrupt flag
+        TIM2->SR &= ~(1 << 0);
+
+        // Toggle the red LED
+        toggleRedLED();
+    }
+
+    // Clear the pending interrupt in the NVIC register to prevent another 
+    NVIC_Clear_Pending_Interrupt(TIM2_IRQ_NUM);
+
+    // Reset the timer
+    LED_Reset_Timer2();
+
+    // Re-enable the interrupt
+    NVIC_Enable_Interrupt(TIM2_IRQ_NUM);
 }
 
 #endif

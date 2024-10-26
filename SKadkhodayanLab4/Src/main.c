@@ -33,7 +33,6 @@ int main(void)
 
     /* Loop forever */
 	for(;;) {
-		// TODO: Suppress FPU warning
 
 		// Store the events to run
 		eventsToRun = getScheduledEvents();
@@ -43,16 +42,6 @@ int main(void)
 			// Add a delay
 			AppDelay(DELAYMAGNIFIER);
 		}
-
-		#if USE_INTERRUPT_FOR_BUTTON == 0
-		
-			// Check if the button event is set
-			if (eventsToRun & POLL_BUTTON_EVENT) {
-
-				// Poll the button
-				executeButtonPollingRoutine();
-			}
-		#endif
         
   }
 }

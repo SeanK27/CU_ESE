@@ -6,7 +6,6 @@
  */
 
 #include "LED_Driver.h"
-#include "Timer_Driver.h" // TODO: REMOVE THIS LINE
 
 void LED_Init(uint8_t LEDPin) {
 
@@ -114,9 +113,9 @@ void LED_Timer2_Init() {
 	GPTimer_Config_t TimerConfig = {0};
 
 	// Configure the Timer 2 struct
-	TimerConfig.auto_reload_value = ARR_VALUE;
+	TimerConfig.auto_reload_value = TIM2_ARR_VALUE;
 	TimerConfig.clock_division = TIM_CKD_1X;
-	TimerConfig.prescaler = TIM_NO_PRESCALER;
+	TimerConfig.prescaler = TIM2_PSC_VALUE;
 	TimerConfig.center_aligned_mode = TIM_CMS_EDGE_ALIGNED;
 	TimerConfig.auto_reload_preload = TIM_ARPE_NO_BUFFER;
 	TimerConfig.direction = TIM_DIR_UP;
@@ -130,7 +129,7 @@ void LED_Timer2_Init() {
 	Timer_Init(TIM2, &TimerConfig);
 
 	// Enable Timer 2 Interrupt
-	NVIC_Enable_Interrupt(TIM2_IRQn);
+	NVIC_Enable_Interrupt(TIM2_IRQ_NUM);
 }
 
 void LED_Timer2_Start() {
@@ -157,7 +156,7 @@ void LED_Timer5_Init() {
 	GPTimer_Config_t TimerConfig = {0};
 
 	// Configure the Timer 5 struct
-	TimerConfig.auto_reload_value = ARR_VALUE;
+	TimerConfig.auto_reload_value = TIM2_ARR_VALUE;
 	TimerConfig.clock_division = TIM_CKD_1X;
 	TimerConfig.prescaler = TIM_NO_PRESCALER;
 	TimerConfig.center_aligned_mode = TIM_CMS_EDGE_ALIGNED;
@@ -173,7 +172,7 @@ void LED_Timer5_Init() {
 	Timer_Init(TIM5, &TimerConfig);
 
 	// Enable Timer 5 Interrupt
-	NVIC_Enable_Interrupt(TIM5_IRQn);
+	NVIC_Enable_Interrupt(TIM5_IRQ_NUM);
 }
 
 void LED_Timer5_Start() {
@@ -194,19 +193,19 @@ void LED_Reset_Timer5() {
 	Timer_Reset(TIM5);
 }
 
-uint32_t LED_Timer5_Get_Auto_Reload_Value(GPTIMR_RegDef_t TimerX) {
+uint32_t LED_Timer5_Get_Auto_Reload_Value(GPTIMR_RegDef_t * TimerX) {
 
 	// Return the auto-reload value of Timer 5
 	return TimerX->ARR;
 }
 
-uint32_t LED_Timer5_Get_Value(GPTIMR_RegDef_t TimerX) {
+uint32_t LED_Timer5_Get_Value(GPTIMR_RegDef_t * TimerX) {
 
 	// Return the value of Timer 5
 	return TimerX->CNT;
 }
 
-void LED_Timer5_Reconfigure_Auto_Reload(GPTIMR_RegDef_t TimerX, uint32_t AutoReloadValue) {
+void LED_Timer5_Reconfigure_Auto_Reload(GPTIMR_RegDef_t * TimerX, uint32_t AutoReloadValue) {
 
 	// Reconfigure the auto-reload value of Timer 5
 	TimerX->ARR = AutoReloadValue;
