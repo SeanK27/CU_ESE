@@ -52,6 +52,9 @@
 #define TIM_OPM_NOT_STOPPED false
 #define TIM_OPM_STOPPED true
 
+// Timer prescaler value (PSC) 16 bits
+#define TIM_NO_PRESCALER 0
+
 // Offsets
 #define CLK_DIV_OFFSET 8
 #define CENTER_ALIGNED_OFFSET 5

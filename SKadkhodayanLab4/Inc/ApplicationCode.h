@@ -17,6 +17,7 @@
 #define DELAYMAGNIFIER 60000
 
 #define USE_INTERRUPT_FOR_BUTTON 0
+#define DUAL_TIMER_USAGE 0
 
 void applicationInit();
 void greenLEDInit();

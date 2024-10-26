@@ -6,6 +6,7 @@
  */
 
 #include "LED_Driver.h"
+#include "Timer_Driver.h" // TODO: REMOVE THIS LINE
 
 void LED_Init(uint8_t LEDPin) {
 
@@ -105,4 +106,108 @@ void TurnOnLED(uint8_t LEDPin) {
 
 		break;
 	}
+}
+
+void LED_Timer2_Init() {
+
+	// Instantiate a GPTimer_Config_t struct
+	GPTimer_Config_t TimerConfig = {0};
+
+	// Configure the Timer 2 struct
+	TimerConfig.auto_reload_value = ARR_VALUE;
+	TimerConfig.clock_division = TIM_CKD_1X;
+	TimerConfig.prescaler = TIM_NO_PRESCALER;
+	TimerConfig.center_aligned_mode = TIM_CMS_EDGE_ALIGNED;
+	TimerConfig.auto_reload_preload = TIM_ARPE_NO_BUFFER;
+	TimerConfig.direction = TIM_DIR_UP;
+	TimerConfig.update_interrupt_enable = TIM_UIE_ENABLE;
+	TimerConfig.one_pulse_mode = TIM_OPM_NOT_STOPPED;
+
+	// Enable Clock for Timer 2
+	Timer_Clock_Control(TIM2, ENABLE);
+
+	// Initialize Timer 2
+	Timer_Init(TIM2, &TimerConfig);
+
+	// Enable Timer 2 Interrupt
+	NVIC_Enable_Interrupt(TIM2_IRQn);
+}
+
+void LED_Timer2_Start() {
+
+	// Start Timer 2
+	Timer_Start(TIM2);
+}
+
+void LED_Timer2_Stop() {
+
+	// Stop Timer 2
+	Timer_Stop(TIM2);
+}
+
+void LED_Reset_Timer2() {
+
+	// Reset Timer 2
+	Timer_Reset(TIM2);
+}
+
+void LED_Timer5_Init() {
+
+	// Instantiate a GPTimer_Config_t struct
+	GPTimer_Config_t TimerConfig = {0};
+
+	// Configure the Timer 5 struct
+	TimerConfig.auto_reload_value = ARR_VALUE;
+	TimerConfig.clock_division = TIM_CKD_1X;
+	TimerConfig.prescaler = TIM_NO_PRESCALER;
+	TimerConfig.center_aligned_mode = TIM_CMS_EDGE_ALIGNED;
+	TimerConfig.auto_reload_preload = TIM_ARPE_NO_BUFFER;
+	TimerConfig.direction = TIM_DIR_UP;
+	TimerConfig.update_interrupt_enable = TIM_UIE_ENABLE;
+	TimerConfig.one_pulse_mode = TIM_OPM_NOT_STOPPED;
+
+	// Enable Clock for Timer 5
+	Timer_Clock_Control(TIM5, ENABLE);
+
+	// Initialize Timer 5
+	Timer_Init(TIM5, &TimerConfig);
+
+	// Enable Timer 5 Interrupt
+	NVIC_Enable_Interrupt(TIM5_IRQn);
+}
+
+void LED_Timer5_Start() {
+
+	// Start Timer 5
+	Timer_Start(TIM5);
+}
+
+void LED_Timer5_Stop() {
+
+	// Stop Timer 5
+	Timer_Stop(TIM5);
+}
+
+void LED_Reset_Timer5() {
+
+	// Reset Timer 5
+	Timer_Reset(TIM5);
+}
+
+uint32_t LED_Timer5_Get_Auto_Reload_Value(GPTIMR_RegDef_t TimerX) {
+
+	// Return the auto-reload value of Timer 5
+	return TimerX->ARR;
+}
+
+uint32_t LED_Timer5_Get_Value(GPTIMR_RegDef_t TimerX) {
+
+	// Return the value of Timer 5
+	return TimerX->CNT;
+}
+
+void LED_Timer5_Reconfigure_Auto_Reload(GPTIMR_RegDef_t TimerX, uint32_t AutoReloadValue) {
+
+	// Reconfigure the auto-reload value of Timer 5
+	TimerX->ARR = AutoReloadValue;
 }
