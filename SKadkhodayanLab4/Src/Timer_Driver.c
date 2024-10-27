@@ -6,7 +6,6 @@
  */
 
 #include "Timer_Driver.h"
-#include "InterruptControl.h"
 
 void Timer_Init(GPTIMR_RegDef_t * TimerX, GPTimer_Config_t *TimerConfig) {
 

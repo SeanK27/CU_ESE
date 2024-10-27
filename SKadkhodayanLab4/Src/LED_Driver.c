@@ -156,9 +156,9 @@ void LED_Timer5_Init() {
 	GPTimer_Config_t TimerConfig = {0};
 
 	// Configure the Timer 5 struct
-	TimerConfig.auto_reload_value = TIM2_ARR_VALUE;
+	TimerConfig.auto_reload_value = TIM5_ARR_VALUE;
 	TimerConfig.clock_division = TIM_CKD_1X;
-	TimerConfig.prescaler = TIM_NO_PRESCALER;
+	TimerConfig.prescaler = TIM5_PSC_VALUE;
 	TimerConfig.center_aligned_mode = TIM_CMS_EDGE_ALIGNED;
 	TimerConfig.auto_reload_preload = TIM_ARPE_NO_BUFFER;
 	TimerConfig.direction = TIM_DIR_UP;

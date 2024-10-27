@@ -9,10 +9,14 @@
 #define TIMER_DRIVER_H_
 
 #include "STM32F429i.h"
+#include "InterruptControl.h"
 #include <stdbool.h>
 
 #define TIM2_ARR_VALUE 100000
 #define TIM2_PSC_VALUE 800
+
+#define TIM5_ARR_VALUE 1000000000
+#define TIM5_PSC_VALUE 0
 
 // Timer master mode selection (MMS) 3 bits
 #define TIM_MMS_RESET 000

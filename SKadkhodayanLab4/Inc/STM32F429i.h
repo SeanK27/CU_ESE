@@ -120,6 +120,8 @@ typedef struct {
     volatile uint32_t OR;           // 0x50: Option register
 } GPTIMR_RegDef_t;
 
+#define TIM_UIF_BIT 0
+
 #define AHB1_BASE_ADDR 0x40020000					// AHB1 peripheral base address
 #define APB2_BASE_ADDR 0x40010000					// APB2 peripheral base address
 #define RCC_BASE_ADDR (AHB1_BASE_ADDR + 0x3800)     // RCC peripheral base address

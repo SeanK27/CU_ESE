@@ -37,7 +37,7 @@ void LED_Timer2_Start();
 void LED_Timer2_Stop();
 
 // Resets timer2 for the LED
-void LED_Timer2_Reset();
+void LED_Reset_Timer2();
 
 // Initialize timer5 for the LED
 void LED_Timer5_Init();
@@ -49,7 +49,7 @@ void LED_Timer5_Start();
 void LED_Timer5_Stop();
 
 // Resets timer5 for the LED
-void LED_Timer5_Reset();
+void LED_Reset_Timer5();
 
 // Returns auto-reload value of timer5
 uint32_t LED_Timer5_Get_Auto_Reload_Value(GPTIMR_RegDef_t * TimerX);

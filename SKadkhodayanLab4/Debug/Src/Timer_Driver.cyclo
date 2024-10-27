@@ -1,8 +1,8 @@
-../Src/Timer_Driver.c:11:6:Timer_Init	6
-../Src/Timer_Driver.c:66:6:Timer_Clock_Control	6
-../Src/Timer_Driver.c:86:6:Timer_Start	1
-../Src/Timer_Driver.c:90:6:Timer_Stop	1
-../Src/Timer_Driver.c:94:6:Timer_Reset	1
-../Src/Timer_Driver.c:98:10:Timer_Get_Auto_Reload_Value	1
-../Src/Timer_Driver.c:102:10:Timer_Get_Value	1
-../Src/Timer_Driver.c:106:6:Timer_Interrupt_Control	6
+../Src/Timer_Driver.c:10:6:Timer_Init	6
+../Src/Timer_Driver.c:65:6:Timer_Clock_Control	6
+../Src/Timer_Driver.c:85:6:Timer_Start	1
+../Src/Timer_Driver.c:89:6:Timer_Stop	1
+../Src/Timer_Driver.c:93:6:Timer_Reset	1
+../Src/Timer_Driver.c:97:10:Timer_Get_Auto_Reload_Value	1
+../Src/Timer_Driver.c:101:10:Timer_Get_Value	1
+../Src/Timer_Driver.c:105:6:Timer_Interrupt_Control	6

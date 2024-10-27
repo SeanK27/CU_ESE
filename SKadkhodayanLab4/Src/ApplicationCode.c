@@ -148,6 +148,7 @@ void applicationInit() {
 
 // TODO: Do all the dual timer stuff here
 
+
 void InitializeUserButtonAsInterrupt() {
     
     // Initialize the user button as an interrupt
@@ -160,17 +161,38 @@ void EXTI0_IRQHandler() {
     // Disable the interrupt so it doesn't trigger during execution
     NVIC_Disable_Interrupt(EXTI0_IRQ_NUM);
 
-    // Toggle the green LED
-    toggleGreenLED();
+    if (User_Button_Is_Pressed()) {
 
-    // Clear the pending bit to allow for another interrupt in the future
-    NVIC_Clear_Pending_EXTI_Bit(USER_BUTTON_PIN);
+    	// Start the button hold timing
+        LED_Reset_Timer5();
+        LED_Timer5_Start();
 
-    // Clear the pending interrupt in the NVIC register to prevent another 
-    NVIC_Clear_Pending_Interrupt(EXTI0_IRQ_NUM);
+        // Clear the pending bit to allow for another interrupt in the future
+        NVIC_Clear_Pending_EXTI_Bit(USER_BUTTON_PIN);
 
-    // Re-enable the interrupt
-    NVIC_Enable_Interrupt(EXTI0_IRQ_NUM);
+        // Clear the pending interrupt in the NVIC register to prevent another
+        NVIC_Clear_Pending_Interrupt(EXTI0_IRQ_NUM);
+
+        // Re-enable the interrupt
+        NVIC_Enable_Interrupt(EXTI0_IRQ_NUM);
+
+    } else {
+
+    	// When button is released
+    	// Stop timer, get the hold time, store it into ARR and restart
+        LED_Timer5_Stop();
+        LED_Timer5_Reconfigure_Auto_Reload(TIM5, Timer_Get_Value(TIM5));
+        LED_Reset_Timer5();
+        LED_Timer5_Start();
+
+        // Clear the pending bit to allow for another interrupt in the future
+        NVIC_Clear_Pending_EXTI_Bit(USER_BUTTON_PIN);
+
+        // Clear the pending interrupt in the NVIC register to prevent another
+        NVIC_Clear_Pending_Interrupt(EXTI0_IRQ_NUM);
+
+        // DO NOT re-enable button interrupt as button is no longer needed.
+    }
 }
 
 void TIM5_IRQHandler() {
@@ -179,10 +201,10 @@ void TIM5_IRQHandler() {
     NVIC_Disable_Interrupt(TIM5_IRQ_NUM);
 
     // Check if the interrupt flag is set
-    if (TIM5->SR & (1 << 0)) {
+    if (TIM5->SR & (1 << TIM_UIF_BIT)) {
 
         // Clear the interrupt flag
-        TIM5->SR &= ~(1 << 0);
+        TIM5->SR &= ~(1 << TIM_UIF_BIT);
 
         // Toggle the green LED
         toggleGreenLED();
@@ -211,10 +233,10 @@ void TIM2_IRQHandler() {
     NVIC_Disable_Interrupt(TIM2_IRQ_NUM);
 
     // Check if the interrupt flag is set
-    if (TIM2->SR & (1 << 0)) {
+    if (TIM2->SR & (1 << TIM_UIF_BIT)) {
 
         // Clear the interrupt flag
-        TIM2->SR &= ~(1 << 0);
+        TIM2->SR &= ~(1 << TIM_UIF_BIT);
 
         // Toggle the red LED
         toggleRedLED();

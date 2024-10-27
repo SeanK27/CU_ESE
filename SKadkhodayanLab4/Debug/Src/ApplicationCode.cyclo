@@ -10,4 +10,6 @@
 ../Src/ApplicationCode.c:67:6:executeButtonPollingRoutine	2
 ../Src/ApplicationCode.c:82:6:AppDelay	3
 ../Src/ApplicationCode.c:98:6:applicationInit	1
-../Src/ApplicationCode.c:183:6:TIM2_IRQHandler	2
+../Src/ApplicationCode.c:152:6:InitializeUserButtonAsInterrupt	1
+../Src/ApplicationCode.c:159:6:EXTI0_IRQHandler	2
+../Src/ApplicationCode.c:198:6:TIM5_IRQHandler	2
