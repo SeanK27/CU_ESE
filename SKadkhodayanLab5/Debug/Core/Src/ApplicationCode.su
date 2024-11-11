@@ -1,0 +1,12 @@
+../Core/Src/ApplicationCode.c:14:6:greenLEDInit	8	static
+../Core/Src/ApplicationCode.c:20:6:redLEDInit	8	static
+../Core/Src/ApplicationCode.c:26:6:toggleGreenLED	8	static
+../Core/Src/ApplicationCode.c:32:6:toggleRedLED	8	static
+../Core/Src/ApplicationCode.c:38:6:activateGreenLED	8	static
+../Core/Src/ApplicationCode.c:44:6:activateRedLED	8	static
+../Core/Src/ApplicationCode.c:50:6:deactivateGreenLED	8	static
+../Core/Src/ApplicationCode.c:56:6:deactivateRedLED	8	static
+../Core/Src/ApplicationCode.c:62:6:InitializeUserButton	8	static
+../Core/Src/ApplicationCode.c:68:6:executeButtonPollingRoutine	8	static
+../Core/Src/ApplicationCode.c:83:6:AppDelay	32	static
+../Core/Src/ApplicationCode.c:99:6:applicationInit	8	static

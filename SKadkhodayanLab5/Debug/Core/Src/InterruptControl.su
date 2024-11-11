@@ -1,0 +1,5 @@
+../Core/Src/InterruptControl.c:10:6:NVIC_Enable_Interrupt	16	static
+../Core/Src/InterruptControl.c:24:6:NVIC_Disable_Interrupt	16	static
+../Core/Src/InterruptControl.c:39:6:NVIC_Clear_Pending_Interrupt	16	static
+../Core/Src/InterruptControl.c:54:6:NVIC_Set_Pending_Interrupt	16	static
+../Core/Src/InterruptControl.c:69:6:NVIC_Clear_Pending_EXTI_Bit	16	static
