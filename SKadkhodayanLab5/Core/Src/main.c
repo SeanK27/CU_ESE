@@ -95,6 +95,15 @@ int main(void)
   MX_SPI5_Init();
   /* USER CODE BEGIN 2 */
 
+  applicationInit();
+  powerOnGyro();
+  HAL_Delay(500);
+  getGyroID();
+  configureGyro();
+
+  uint32_t eventsToRun;
+  eventsToRun = getScheduledEvents();
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -102,6 +111,17 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+
+    // Continuously check the scheduler for events to run
+    eventsToRun = getScheduledEvents();
+
+    if (eventsToRun & GET_GYRO_ID_EVENT) {
+      getGyroID();
+    }
+
+    if (eventsToRun & POWER_ON_GYRO_EVENT) {
+      powerOnGyro();
+    }
 
     /* USER CODE BEGIN 3 */
   }

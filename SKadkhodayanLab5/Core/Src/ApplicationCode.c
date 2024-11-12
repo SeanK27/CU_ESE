@@ -98,7 +98,8 @@ void AppDelay(uint32_t time) {
 
 void applicationInit() {
 
-    // TODO:? Initialize the GPIO clock
+    // Initialize Gyro
+    Gyro_Init();
 
     // Initialize the GPIOA clock
 	User_Button_Enable_Clock();
@@ -106,17 +107,11 @@ void applicationInit() {
     // Initialize the user button
     InitializeUserButton();
 
-    // Initialize the green LED
-    greenLEDInit();
+    // Add Gyro ID event to scheduler
+    addSchedulerEvent(GET_GYRO_ID_EVENT);
 
-    // Initialize the red LED
-    redLEDInit();
-
-    // Deactivate the red LED
-    deactivateRedLED();
-
-    // Deactivate the green LED
-    deactivateGreenLED();
+    // Add Gyro power on event to scheduler
+    addSchedulerEvent(POWER_ON_GYRO_EVENT);
 
     // Compiler flags to only compile interrupt code if the flag is 1
     #if USE_INTERRUPT_FOR_BUTTON == 1
@@ -137,15 +132,6 @@ void applicationInit() {
 
     #endif
 
-    // Add the scheduler event to toggle the red LED
-    addSchedulerEvent(RED_TOGGLE_EVENT);
-
-    // Add the scheduler event to delay
-    addSchedulerEvent(DELAY_EVENT);
-
-    // Add the scheduler event to toggle the green LED
-    addSchedulerEvent(GREEN_TOGGLE_EVENT);
-
 }
 
 // Compiler flags to only compile interrupt code if the flag is 1
@@ -162,8 +148,11 @@ void EXTI0_IRQHandler() {
     // Disable the interrupt so it doesn't trigger during execution
     NVIC_Disable_Interrupt(EXTI0_IRQ_NUM);
 
-    // Toggle the green LED
-    toggleGreenLED();
+    // Get the Gyro ID
+    getGyroID();
+
+    // Get the Gyro temperature
+    getGyroTemperature();
 
     // Clear the pending bit to allow for another interrupt in the future
     NVIC_Clear_Pending_EXTI_Bit(USER_BUTTON_PIN);
@@ -176,3 +165,33 @@ void EXTI0_IRQHandler() {
 }
 
 #endif
+
+void getGyroID(){
+    
+    Gyro_GetID();
+}
+
+void powerOnGyro(){
+    
+    Gyro_PowerOn();
+}
+
+void getGyroTemperature(){
+    
+    Gyro_GetTemperature();
+}
+
+void configureGyro(){
+    
+    Gyro_Config();
+}
+
+void getGyroConfiguration(){
+    
+    Gyro_ReadConfig();
+}
+
+void checkGyroStatus(){
+    
+    Gyro_CheckHALStatus();
+}

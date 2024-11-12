@@ -16,7 +16,7 @@
 #define NAMELENGTH 4
 #define DELAYMAGNIFIER 60000
 
-#define USE_INTERRUPT_FOR_BUTTON 0
+#define USE_INTERRUPT_FOR_BUTTON 1
 
 void applicationInit();
 void greenLEDInit();
@@ -33,5 +33,12 @@ void InitializeUserButton();
 void executeButtonPollingRoutine();
 
 void InitializeUserButtonAsInterrupt();
+
+void getGyroID();
+void powerOnGyro();
+void getGyroTemperature();
+void configureGyro();
+void getGyroConfiguration();
+void checkGyroStatus();
 
 #endif /* APPLICATIONCODE_H_ */
