@@ -10,3 +10,11 @@
 ../Core/Src/ApplicationCode.c:68:6:executeButtonPollingRoutine	8	static
 ../Core/Src/ApplicationCode.c:83:6:AppDelay	32	static
 ../Core/Src/ApplicationCode.c:99:6:applicationInit	8	static
+../Core/Src/ApplicationCode.c:140:6:InitializeUserButtonAsInterrupt	8	static
+../Core/Src/ApplicationCode.c:146:6:EXTI0_IRQHandler	8	static
+../Core/Src/ApplicationCode.c:169:6:getGyroID	8	static
+../Core/Src/ApplicationCode.c:174:6:powerOnGyro	8	static
+../Core/Src/ApplicationCode.c:179:6:getGyroTemperature	8	static
+../Core/Src/ApplicationCode.c:184:6:configureGyro	8	static
+../Core/Src/ApplicationCode.c:189:6:getGyroConfiguration	8	static
+../Core/Src/ApplicationCode.c:194:6:checkGyroStatus	8	static

@@ -108,10 +108,10 @@ void applicationInit() {
     InitializeUserButton();
 
     // Add Gyro ID event to scheduler
-    addSchedulerEvent(GET_GYRO_ID_EVENT);
+    addSchedulerEvent(APP_DELAY_FLAG_EVENT);
 
     // Add Gyro power on event to scheduler
-    addSchedulerEvent(POWER_ON_GYRO_EVENT);
+    addSchedulerEvent(DEVICE_ID_AND_TEMP_EVENT);
 
     // Compiler flags to only compile interrupt code if the flag is 1
     #if USE_INTERRUPT_FOR_BUTTON == 1
@@ -173,7 +173,7 @@ void getGyroID(){
 
 void powerOnGyro(){
     
-    Gyro_PowerOn();
+    Gyro_PowerON();
 }
 
 void getGyroTemperature(){

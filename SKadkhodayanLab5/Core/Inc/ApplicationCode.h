@@ -12,6 +12,7 @@
 #include "LED_Driver.h"
 #include "Scheduler.h"
 #include "Button_Driver.h"
+#include "Gyro.h"
 
 #define NAMELENGTH 4
 #define DELAYMAGNIFIER 60000

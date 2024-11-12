@@ -1,9 +1,9 @@
 ../Core/Src/Gyro.c:17:6:Gyro_Init	1
-../Core/Src/Gyro.c:77:6:Gyro_GetID	1
-../Core/Src/Gyro.c:89:6:Gyro_PowerON	1
-../Core/Src/Gyro.c:98:6:Gyro_GetTemperature	1
-../Core/Src/Gyro.c:111:6:Gyro_Config	1
-../Core/Src/Gyro.c:129:6:Gyro_ReadConfig	1
-../Core/Src/Gyro.c:150:6:Gyro_CheckHALStatus	2
-../Core/Src/Gyro.c:156:6:Gyro_EnableSlaveComms	1
-../Core/Src/Gyro.c:160:6:Gyro_DisableSlaveComms	1
+../Core/Src/Gyro.c:75:6:Gyro_GetID	1
+../Core/Src/Gyro.c:87:6:Gyro_PowerON	1
+../Core/Src/Gyro.c:96:6:Gyro_GetTemperature	1
+../Core/Src/Gyro.c:109:6:Gyro_Config	1
+../Core/Src/Gyro.c:127:6:Gyro_ReadConfig	1
+../Core/Src/Gyro.c:148:6:Gyro_CheckHALStatus	2
+../Core/Src/Gyro.c:154:6:Gyro_EnableSlaveComms	1
+../Core/Src/Gyro.c:158:6:Gyro_DisableSlaveComms	1

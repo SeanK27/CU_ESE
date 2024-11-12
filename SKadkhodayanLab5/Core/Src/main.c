@@ -115,12 +115,13 @@ int main(void)
     // Continuously check the scheduler for events to run
     eventsToRun = getScheduledEvents();
 
-    if (eventsToRun & GET_GYRO_ID_EVENT) {
-      getGyroID();
+    if (eventsToRun & APP_DELAY_FLAG_EVENT) {
+      AppDelay(DELAYMAGNIFIER);
     }
 
-    if (eventsToRun & POWER_ON_GYRO_EVENT) {
-      powerOnGyro();
+    if (eventsToRun & DEVICE_ID_AND_TEMP_EVENT) {
+      getGyroID();
+      getGyroTemperature();
     }
 
     /* USER CODE BEGIN 3 */
