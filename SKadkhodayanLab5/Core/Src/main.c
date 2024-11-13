@@ -103,6 +103,7 @@ int main(void)
   getGyroID();
   configureGyro();
   getGyroConfiguration();
+  getGyroTemperature();
 
   uint32_t eventsToRun;
   eventsToRun = getScheduledEvents();
@@ -116,16 +117,16 @@ int main(void)
     /* USER CODE END WHILE */
 
     // Continuously check the scheduler for events to run
-//    eventsToRun = getScheduledEvents();
-//
-//    if (eventsToRun & APP_DELAY_FLAG_EVENT) {
-//      AppDelay(DELAYMAGNIFIER);
-//    }
-//
-//    if (eventsToRun & DEVICE_ID_AND_TEMP_EVENT) {
-//      getGyroID();
-//      getGyroTemperature();
-//    }
+    eventsToRun = getScheduledEvents();
+
+    if (eventsToRun & APP_DELAY_FLAG_EVENT) {
+      AppDelay(DELAYMAGNIFIER);
+    }
+
+    if (eventsToRun & DEVICE_ID_AND_TEMP_EVENT) {
+      getGyroID();
+      getGyroTemperature();
+    }
 
     /* USER CODE BEGIN 3 */
   }

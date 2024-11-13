@@ -1,9 +1,9 @@
-../Core/Src/Gyro.c:19:6:Gyro_Init	24	static
+../Core/Src/Gyro.c:19:6:Gyro_Init	16	static
 ../Core/Src/Gyro.c:60:6:Gyro_GetID	24	static
-../Core/Src/Gyro.c:72:6:Gyro_PowerON	16	static
-../Core/Src/Gyro.c:81:6:Gyro_GetTemperature	24	static
-../Core/Src/Gyro.c:94:6:Gyro_Config	16	static
-../Core/Src/Gyro.c:112:6:Gyro_ReadConfig	24	static
-../Core/Src/Gyro.c:133:6:Gyro_CheckHALStatus	8	static
-../Core/Src/Gyro.c:139:6:Gyro_EnableSlaveComms	8	static
-../Core/Src/Gyro.c:143:6:Gyro_DisableSlaveComms	8	static
+../Core/Src/Gyro.c:80:6:Gyro_PowerON	16	static
+../Core/Src/Gyro.c:90:6:Gyro_GetTemperature	24	static
+../Core/Src/Gyro.c:110:6:Gyro_Config	16	static
+../Core/Src/Gyro.c:129:6:Gyro_ReadConfig	24	static
+../Core/Src/Gyro.c:165:6:Gyro_CheckHALStatus	8	static
+../Core/Src/Gyro.c:171:6:Gyro_EnableSlaveComms	8	static
+../Core/Src/Gyro.c:175:6:Gyro_DisableSlaveComms	8	static

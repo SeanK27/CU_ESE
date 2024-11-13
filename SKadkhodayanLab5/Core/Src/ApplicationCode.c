@@ -154,9 +154,6 @@ void EXTI0_IRQHandler() {
     // Get the Gyro temperature
     getGyroTemperature();
 
-    // Toggle Green LED
-    //toggleGreenLED();
-
     // Clear the pending bit to allow for another interrupt in the future
     NVIC_Clear_Pending_EXTI_Bit(USER_BUTTON_PIN);
 
