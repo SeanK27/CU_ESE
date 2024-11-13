@@ -6,7 +6,7 @@
  */
 
 #include "ApplicationCode.h"
-#include "stm32f4xx_hal_gpio.h"
+#include "stm32f4xx_hal.h"
 
 // Create name array for AppDelay
 uint32_t nameArray[NAMELENGTH] = {'S', 'E', 'A', 'N'};
@@ -148,11 +148,8 @@ void EXTI0_IRQHandler() {
     // Disable the interrupt so it doesn't trigger during execution
     NVIC_Disable_Interrupt(EXTI0_IRQ_NUM);
 
-    // Get the Gyro ID
-    getGyroID();
-
-    // Get the Gyro temperature
-    getGyroTemperature();
+    // Add the ID and Temperature print event to the scheduler
+    addSchedulerEvent(DEVICE_ID_AND_TEMP_EVENT);
 
     // Clear the pending bit to allow for another interrupt in the future
     NVIC_Clear_Pending_EXTI_Bit(USER_BUTTON_PIN);

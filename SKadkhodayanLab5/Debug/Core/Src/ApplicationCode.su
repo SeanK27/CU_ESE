@@ -12,9 +12,9 @@
 ../Core/Src/ApplicationCode.c:99:6:applicationInit	8	static
 ../Core/Src/ApplicationCode.c:140:6:InitializeUserButtonAsInterrupt	8	static
 ../Core/Src/ApplicationCode.c:146:6:EXTI0_IRQHandler	8	static
-../Core/Src/ApplicationCode.c:172:6:getGyroID	8	static
-../Core/Src/ApplicationCode.c:177:6:powerOnGyro	8	static
-../Core/Src/ApplicationCode.c:182:6:getGyroTemperature	8	static
-../Core/Src/ApplicationCode.c:187:6:configureGyro	8	static
-../Core/Src/ApplicationCode.c:192:6:getGyroConfiguration	8	static
-../Core/Src/ApplicationCode.c:197:6:checkGyroStatus	8	static
+../Core/Src/ApplicationCode.c:166:6:getGyroID	8	static
+../Core/Src/ApplicationCode.c:171:6:powerOnGyro	8	static
+../Core/Src/ApplicationCode.c:176:6:getGyroTemperature	8	static
+../Core/Src/ApplicationCode.c:181:6:configureGyro	8	static
+../Core/Src/ApplicationCode.c:186:6:getGyroConfiguration	8	static
+../Core/Src/ApplicationCode.c:191:6:checkGyroStatus	8	static

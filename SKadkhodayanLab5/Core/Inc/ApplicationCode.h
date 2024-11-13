@@ -8,7 +8,6 @@
 #ifndef APPLICATIONCODE_H_
 #define APPLICATIONCODE_H_
 
-#include "stm32f4xx_hal.h"
 #include "LED_Driver.h"
 #include "Scheduler.h"
 #include "Button_Driver.h"
