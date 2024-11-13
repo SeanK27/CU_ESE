@@ -28,7 +28,6 @@ Core/Src/ApplicationCode.o: ../Core/Src/ApplicationCode.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h \
  ../Core/Inc/LED_Driver.h ../Core/Inc/Scheduler.h \
  ../Core/Inc/Button_Driver.h ../Core/Inc/InterruptControl.h \
- ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f429xx.h \
  ../Core/Inc/Gyro.h ../Core/Inc/ErrorHandling.h
 ../Core/Inc/ApplicationCode.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
@@ -61,6 +60,5 @@ Core/Src/ApplicationCode.o: ../Core/Src/ApplicationCode.c \
 ../Core/Inc/Scheduler.h:
 ../Core/Inc/Button_Driver.h:
 ../Core/Inc/InterruptControl.h:
-../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f429xx.h:
 ../Core/Inc/Gyro.h:
 ../Core/Inc/ErrorHandling.h:

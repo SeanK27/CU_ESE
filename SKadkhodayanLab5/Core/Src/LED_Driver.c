@@ -7,7 +7,7 @@
 
 #include "LED_Driver.h"
 
-void LED_Init(uint8_t LEDPin) {
+void LED_Init(uint16_t LEDPin) {
 
 	// Instantiate a GPIO_PinConfig_t struct
 	GPIO_InitTypeDef* GPIOConfigH = {0};
@@ -50,7 +50,7 @@ void LED_Init(uint8_t LEDPin) {
 	}
 }
 
-void ToggleLED(uint8_t LEDPin) {
+void ToggleLED(uint16_t LEDPin) {
 
 	switch(LEDPin) {
 
@@ -71,7 +71,7 @@ void ToggleLED(uint8_t LEDPin) {
 	}
 }
 
-void TurnOffLED(uint8_t LEDPin) {
+void TurnOffLED(uint16_t LEDPin) {
 
 	switch(LEDPin) {
 
@@ -92,7 +92,7 @@ void TurnOffLED(uint8_t LEDPin) {
 	}
 }
 
-void TurnOnLED(uint8_t LEDPin) {
+void TurnOnLED(uint16_t LEDPin) {
 
 	switch(LEDPin) {
 

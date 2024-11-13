@@ -11,19 +11,19 @@
 #include "stm32f4xx_hal.h"
 
 
-#define LED_RED_PIN 14
-#define LED_GREEN_PIN 13
+#define LED_RED_PIN GPIO_PIN_14
+#define LED_GREEN_PIN GPIO_PIN_13
 
 // Initializes the specified LED
-void LED_Init(uint8_t LEDPin);
+void LED_Init(uint16_t LEDPin);
 
 // Toggles the specified LED
-void ToggleLED(uint8_t LEDPin);
+void ToggleLED(uint16_t LEDPin);
 
 // Turn off specified LED
-void TurnOffLED(uint8_t LEDPin);
+void TurnOffLED(uint16_t LEDPin);
 
 // Turn on the specified LED
-void TurnOnLED(uint8_t LEDPin);
+void TurnOnLED(uint16_t LEDPin);
 
 #endif /* LED_DRIVER_H_ */

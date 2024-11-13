@@ -8,7 +8,7 @@
 #ifndef INTERRUPTCONTROL_H_
 #define INTERRUPTCONTROL_H_
 
-#include "stm32f429xx.h"
+#include "stm32f4xx_hal.h"
 
 #define EXTI0_IRQ_NUM 6
 

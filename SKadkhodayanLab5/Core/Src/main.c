@@ -72,6 +72,8 @@ int main(void)
 
   /* USER CODE BEGIN 1 */
 
+	initialise_monitor_handles();
+
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -91,15 +93,16 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
-  MX_GPIO_Init();
-  MX_SPI5_Init();
+  //MX_GPIO_Init();
+  //MX_SPI5_Init();
   /* USER CODE BEGIN 2 */
 
   applicationInit();
   powerOnGyro();
-  HAL_Delay(500);
+  HAL_Delay(1000);
   getGyroID();
   configureGyro();
+  getGyroConfiguration();
 
   uint32_t eventsToRun;
   eventsToRun = getScheduledEvents();
@@ -113,16 +116,16 @@ int main(void)
     /* USER CODE END WHILE */
 
     // Continuously check the scheduler for events to run
-    eventsToRun = getScheduledEvents();
-
-    if (eventsToRun & APP_DELAY_FLAG_EVENT) {
-      AppDelay(DELAYMAGNIFIER);
-    }
-
-    if (eventsToRun & DEVICE_ID_AND_TEMP_EVENT) {
-      getGyroID();
-      getGyroTemperature();
-    }
+//    eventsToRun = getScheduledEvents();
+//
+//    if (eventsToRun & APP_DELAY_FLAG_EVENT) {
+//      AppDelay(DELAYMAGNIFIER);
+//    }
+//
+//    if (eventsToRun & DEVICE_ID_AND_TEMP_EVENT) {
+//      getGyroID();
+//      getGyroTemperature();
+//    }
 
     /* USER CODE BEGIN 3 */
   }
@@ -199,7 +202,7 @@ static void MX_SPI5_Init(void)
   hspi5.Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi5.Init.NSS = SPI_NSS_SOFT;
   hspi5.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
-  hspi5.Init.FirstBit = SPI_FIRSTBIT_MSB;
+  hspi5.Init.FirstBit = SPI_FIRSTBIT_LSB;
   hspi5.Init.TIMode = SPI_TIMODE_DISABLE;
   hspi5.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
   hspi5.Init.CRCPolynomial = 10;

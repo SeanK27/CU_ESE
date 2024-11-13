@@ -26,8 +26,7 @@ Core/Src/Button_Driver.o: ../Core/Src/Button_Driver.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h \
- ../Core/Inc/InterruptControl.h \
- ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f429xx.h
+ ../Core/Inc/InterruptControl.h
 ../Core/Inc/Button_Driver.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -56,4 +55,3 @@ Core/Src/Button_Driver.o: ../Core/Src/Button_Driver.c \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:
 ../Core/Inc/InterruptControl.h:
-../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f429xx.h:

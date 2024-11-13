@@ -10,7 +10,7 @@
 
 //GPIO_PinConfig_t GPIOConfig = {0};
 
-GPIO_InitTypeDef* GPIOConfigH = {0};
+GPIO_InitTypeDef GPIOConfigH = {0};
 
 void User_Button_Enable_Clock() {
     // Enable the clock for the user button
@@ -27,10 +27,10 @@ void User_Button_Init() {
 //    GPIOConfig.PinSpeed = GPIO_Speed_Medium;
 //    GPIOConfig.PinPuPdControl = GPIO_PUPDR_PD;
 
-	GPIOConfigH->Pin = GPIO_PIN_0;
-	GPIOConfigH->Mode = GPIO_MODE_INPUT;
-	GPIOConfigH->Speed = GPIO_SPEED_FREQ_MEDIUM;
-	GPIOConfigH->Pull = GPIO_PULLDOWN;
+	GPIOConfigH.Pin = GPIO_PIN_0;
+	GPIOConfigH.Mode = GPIO_MODE_INPUT;
+	GPIOConfigH.Speed = GPIO_SPEED_FREQ_MEDIUM;
+	GPIOConfigH.Pull = GPIO_PULLDOWN;
 
     // Enable the clock for the user button
     User_Button_Enable_Clock();
@@ -38,7 +38,7 @@ void User_Button_Init() {
     // Initialize the GPIO Pin
 //    GPIO_Init(GPIOA, GPIOConfig);
 
-    HAL_GPIO_Init(GPIOA, GPIOConfigH);
+    HAL_GPIO_Init(GPIOA, &GPIOConfigH);
 }
 
 bool User_Button_Is_Pressed() {
@@ -68,10 +68,10 @@ void User_Button_Interrupt_Enable() {
 //    GPIOConfig.PinPuPdControl = GPIO_PUPDR_PD;
 //    GPIOConfig.PinInterruptMode = GPIO_PinInterrupt_RisingFallingEdge;
 
-	GPIOConfigH->Pin = GPIO_PIN_0;
-	GPIOConfigH->Mode = GPIO_MODE_INPUT;
-	GPIOConfigH->Speed = GPIO_SPEED_FREQ_MEDIUM;
-	GPIOConfigH->Pull = GPIO_PULLDOWN;
+	GPIOConfigH.Pin = GPIO_PIN_0;
+	GPIOConfigH.Mode = GPIO_MODE_IT_RISING;
+	GPIOConfigH.Speed = GPIO_SPEED_FREQ_MEDIUM;
+	GPIOConfigH.Pull = GPIO_PULLDOWN;
 
     // Enable the clock for the user button
     User_Button_Enable_Clock();
@@ -79,7 +79,7 @@ void User_Button_Interrupt_Enable() {
     // Initialize the GPIO Pin
 //    GPIO_Init(GPIOA, GPIOConfig);
 
-    HAL_GPIO_Init(GPIOA, GPIOConfigH);
+    HAL_GPIO_Init(GPIOA, &GPIOConfigH);
 
     // Enable the interrupt in the EXTI register
 //    GPIO_InterruptConfig(6, ENABLE);

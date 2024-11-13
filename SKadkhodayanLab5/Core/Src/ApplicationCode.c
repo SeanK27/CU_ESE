@@ -101,11 +101,11 @@ void applicationInit() {
     // Initialize Gyro
     Gyro_Init();
 
+    //Initialize LED
+    greenLEDInit();
+
     // Initialize the GPIOA clock
 	User_Button_Enable_Clock();
-
-    // Initialize the user button
-    InitializeUserButton();
 
     // Add Gyro ID event to scheduler
     addSchedulerEvent(APP_DELAY_FLAG_EVENT);
@@ -153,6 +153,9 @@ void EXTI0_IRQHandler() {
 
     // Get the Gyro temperature
     getGyroTemperature();
+
+    // Toggle Green LED
+    //toggleGreenLED();
 
     // Clear the pending bit to allow for another interrupt in the future
     NVIC_Clear_Pending_EXTI_Bit(USER_BUTTON_PIN);
